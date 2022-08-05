@@ -24,7 +24,7 @@ struct FishDetailView: View {
                         
                     // TITLE
                     VStack(alignment: .leading, spacing: 20) {
-                        Text(fish.title ?? "Kuha 50kg")
+                        Text(fish.title ?? "")
                             .font(.largeTitle)
                         .fontWeight(.heavy)
                         

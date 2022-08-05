@@ -16,6 +16,7 @@ struct PersistenceController {
         for _ in 0..<10 {
             let newItem = Fish(context: viewContext)
             newItem.timestamp = Date()
+            newItem.id = UUID()
             newItem.title = "Kala mökiltä"
             newItem.details = "Kalan kuvan ottanut Joni ja kalan saanut Joonas"
         }

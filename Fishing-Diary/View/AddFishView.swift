@@ -64,13 +64,18 @@ struct AddFishView: View {
 
                 
                 Button(action: {
+                    
+                 
+                    
                     let save = Fish(context: self.moc)
+                    
                     save.imageData = self.image
                     save.title = self.title
                     save.details = self.details
                     save.timestamp = Date()
-                    
+                    save.id = UUID()
                     // TODO: ERROR HANDLING
+                    
                     try! self.moc.save()
                     
                     self.title = ""

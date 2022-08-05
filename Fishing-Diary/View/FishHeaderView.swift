@@ -21,7 +21,8 @@ struct FishHeaderView: View {
             Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(systemName: "photo")!))
             .resizable()
             .scaledToFit()
-            .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.5), radius: 18, x: 6, y: 50)
+            .shadow(color: Color("LightShadow"), radius: 8, x: 8, y: 8)
+            .shadow(color: Color("DarkShadow"), radius: 8, x: 8, y: 8)
             .padding(.vertical, 20)
             .scaleEffect(isAnimatingImage ? 1.0 : 0.6)
         } //: ZSTACK

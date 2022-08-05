@@ -15,8 +15,9 @@ struct ContentView: View {
 
     @FetchRequest(
     sortDescriptors: [
-        NSSortDescriptor(keyPath: \Fish.title, ascending: true),
-        NSSortDescriptor(keyPath: \Fish.imageData, ascending: true)
+        NSSortDescriptor(keyPath: \Fish.id, ascending: true),
+        NSSortDescriptor(keyPath: \Fish.title, ascending: true)
+        
     ],
     animation: .default)
     private var fishes: FetchedResults<Fish>
@@ -27,7 +28,7 @@ struct ContentView: View {
         NavigationView {
             List {
             ScrollView(.vertical, showsIndicators: false) {
-                ForEach(fishes, id: \.title) { fish in
+                ForEach(fishes, id: \.id) { fish in
                     NavigationLink(destination: FishDetailView(fish: fish)) {
                         FishItemListView(fish: fish)
                     }

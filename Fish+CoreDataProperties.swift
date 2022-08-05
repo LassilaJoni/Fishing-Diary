@@ -20,6 +20,7 @@ extension Fish {
     @NSManaged public var imageData: Data?
     @NSManaged public var timestamp: Date?
     @NSManaged public var title: String?
+    @NSManaged public var id: UUID?
 
 }
 
