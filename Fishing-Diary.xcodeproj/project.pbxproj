@@ -15,6 +15,8 @@
 		357148D4289D2304009B428C /* Fish+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148D2289D2304009B428C /* Fish+CoreDataProperties.swift */; };
 		357148D6289D7901009B428C /* DetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148D5289D7901009B428C /* DetailMapView.swift */; };
 		357148D8289D7976009B428C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148D7289D7976009B428C /* LocationManager.swift */; };
+		357148E3289E6CB8009B428C /* AddFish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148E2289E6CB7009B428C /* AddFish.swift */; };
+		357148E728A110F6009B428C /* FishListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148E628A110F6009B428C /* FishListItemView.swift */; };
 		358EF71F289D0A9700B858C3 /* Fishing_DiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF71E289D0A9700B858C3 /* Fishing_DiaryApp.swift */; };
 		358EF721289D0A9700B858C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF720289D0A9700B858C3 /* ContentView.swift */; };
 		358EF723289D0A9C00B858C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 358EF722289D0A9C00B858C3 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 		357148D2289D2304009B428C /* Fish+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fish+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		357148D5289D7901009B428C /* DetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapView.swift; sourceTree = "<group>"; };
 		357148D7289D7976009B428C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		357148E2289E6CB7009B428C /* AddFish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFish.swift; sourceTree = "<group>"; };
+		357148E628A110F6009B428C /* FishListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishListItemView.swift; sourceTree = "<group>"; };
 		358EF71B289D0A9700B858C3 /* Fishing-Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fishing-Diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		358EF71E289D0A9700B858C3 /* Fishing_DiaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fishing_DiaryApp.swift; sourceTree = "<group>"; };
 		358EF720289D0A9700B858C3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				357148C6289D1B2A009B428C /* FishHeaderView.swift */,
 				357148C8289D204B009B428C /* FishItemListView.swift */,
 				357148D5289D7901009B428C /* DetailMapView.swift */,
+				357148E2289E6CB7009B428C /* AddFish.swift */,
+				357148E628A110F6009B428C /* FishListItemView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,11 +212,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				358EF739289D114A00B858C3 /* AddFishView.swift in Sources */,
+				357148E728A110F6009B428C /* FishListItemView.swift in Sources */,
 				358EF728289D0A9C00B858C3 /* Persistence.swift in Sources */,
 				357148C9289D204B009B428C /* FishItemListView.swift in Sources */,
 				358EF721289D0A9700B858C3 /* ContentView.swift in Sources */,
 				357148D6289D7901009B428C /* DetailMapView.swift in Sources */,
 				358EF73B289D127C00B858C3 /* ImagePicker.swift in Sources */,
+				357148E3289E6CB8009B428C /* AddFish.swift in Sources */,
 				358EF72B289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld in Sources */,
 				357148C5289D1A54009B428C /* FishDetailView.swift in Sources */,
 				358EF71F289D0A9700B858C3 /* Fishing_DiaryApp.swift in Sources */,

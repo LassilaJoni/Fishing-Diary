@@ -13,6 +13,14 @@ struct AddFishView: View {
     @Environment(\.managedObjectContext) private var moc
     @Environment(\.dismiss) private var dismiss
     
+    @State private var showingAlertImage = false
+    @State private var showingAlertTitle = false
+    @State private var showingAlertDetails = false
+    @State private var showingAlertAll = false
+    
+    @State private var isOpen: Bool = false
+    
+    
     @State private var title: String = ""
     @State private var details: String = ""
     @State private var image: Data = .init(count: 0)
@@ -54,19 +62,28 @@ struct AddFishView: View {
                                 HStack {
                                     Image(systemName: "")
                                     TextField("Title...", text: self.$title)
-                                }.modifier(customViewModifier(roundedCornes: 6, backgroundColor: .white, textColor: .gray, strokeColor: .blue) )
+                                        .foregroundColor(.black)
+                                        
+                                }.modifier(customViewModifier(roundedCornes: 6, backgroundColor: .white, textColor: .black, strokeColor: .blue) )
                     HStack {
                         Image(systemName: "")
                         TextField("Description...", text: self.$details)
-                    }.modifier(customViewModifier(roundedCornes: 6, backgroundColor: .white, textColor: .gray, strokeColor: .blue) )
+                    }.modifier(customViewModifier(roundedCornes: 6, backgroundColor: .white, textColor: .black, strokeColor: .blue) )
                             }.padding()
                 
 
                 
                 Button(action: {
-                    
-                 
-                    
+                   /*if title.isEmpty {
+                        showingAlertTitle = true
+                    }
+                    if details.isEmpty {
+                        showingAlertDetails = true
+                    }
+                    if image.isEmpty {
+                        showingAlertImage = true
+                    }
+                    else {*/
                     let save = Fish(context: self.moc)
                     
                     save.imageData = self.image
@@ -77,20 +94,25 @@ struct AddFishView: View {
                     // TODO: ERROR HANDLING
                     
                     try! self.moc.save()
-                    
+                   
                     self.title = ""
                     self.details = ""
                     
                     dismiss()
+                   //}
+                    
+                    
                 }) {
                     
                     Text("Save")
                 }
+                .disabled(!formIsValid)
                 .padding()
                 .font(.headline)
                 .foregroundColor(.white)
-                .background(Color.pink)
+                .background(buttonColor)
                 .cornerRadius(10)
+
                 
             }//: VSTACK
         }//: NAVIGATION
@@ -99,6 +121,15 @@ struct AddFishView: View {
         }
     }
     
+    // Check if all the fields and image are filled
+    var formIsValid: Bool {
+        return !title.isEmpty && !details.isEmpty && !image.isEmpty
+        }
+
+        // If the form is not valid button is gray
+        var buttonColor: Color {
+            return formIsValid ? .accentColor : .gray
+        }
 }
 
 

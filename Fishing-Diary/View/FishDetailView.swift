@@ -15,29 +15,10 @@ struct FishDetailView: View {
     @State var image : Data = .init(count: 0)
     
     var body: some View {
-        NavigationView {
-            
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .center, spacing: 20) {
-                    // HEADER
-                    FishHeaderView(fish: fish)
-                        
-                    // TITLE
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text(fish.title ?? "")
-                            .font(.largeTitle)
-                        .fontWeight(.heavy)
-                        
-                        Text(fish.details ?? "Kala joka otettu saimaanniemeltä, kuvan ottanut Joni ja kalan saanut Joonas")
-                                .font(.headline)
-                                .multilineTextAlignment(.leading)
-                    }//:VSTACK
-                
-                } //:VSTACK
-            }//: SCROLLVIEW
-            .edgesIgnoringSafeArea(.top)
-        } //: NAVIGATION
+        Detail(fish: fish)
+       
     }
+        
 }
 
 struct FishDetailView_Previews: PreviewProvider {
@@ -54,5 +35,117 @@ extension NSManagedObjectContext {
         fetchRequest.fetchLimit = 1
         let result = try! fetch(fetchRequest)
         return result.first!
+    }
+}
+
+
+struct Detail: View {
+    
+    @State var image : Data = .init(count: 0)
+    let fish: Fish
+    
+    var body: some View {
+        ZStack {
+            Color("Color-1").edgesIgnoringSafeArea(.all)
+            
+            VStack(spacing: 0) {
+                Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(systemName: "photo")!))
+                    .resizable()
+                    .frame(height: UIScreen.main.bounds.height / 3)
+                ZStack(alignment: .topTrailing) {
+                VStack {
+                    HStack {
+                        Text(fish.title ?? "Error in getting the title")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                        
+                        Spacer()
+                    }.padding(.top, 15) //:HSTACK
+                    HStack {
+                        VStack(alignment: .trailing, spacing: 15) {
+                            Text(fish.timestamp!, formatter: itemFormatter)
+                                .foregroundColor(.gray)
+                        } //:VSTACK
+                        Spacer()
+                    } //:HSTACK
+                    //If Want space between title and timestamp
+                    .padding()
+                    
+                    HStack {
+                        
+                        VStack(alignment: .trailing, spacing: 25) {
+                            Text(fish.details ?? "Error fetching description")
+                        }
+                        
+                    }
+                    
+                    HStack {
+                        VStack(alignment: .trailing, spacing: 25) {
+                            DetailMapView()
+                                .frame(height: UIScreen.main.bounds.height / 3)
+                                
+                        } //: VSTACK
+                        
+                    } //:HSTACK
+                    
+                    HStack {
+                        VStack(alignment: .trailing, spacing: 25) {
+                            Button(action: {
+                                print("Poistettu")
+                            }) {
+                                
+                                    Text("DELETE")
+                                    .foregroundColor(.white)
+                                        .fontWeight(.bold)
+                                        .padding(.vertical)
+                                        .frame(width: UIScreen.main.bounds.width - 100)
+                                        .background(
+                                            LinearGradient(gradient: .init(colors: [Color(.red)]), startPoint: .leading, endPoint: .trailing)
+                                        )
+                                    
+                                }
+                        }
+                    }
+                    
+                }
+                .padding(.bottom, 40)
+                .padding(.horizontal, 20)
+                .background(CustomShape().fill(Color.white))
+                .clipShape(Corners())
+                } //: VSTACK
+                .zIndex(40)
+                .offset(y: -40)
+                
+                Spacer()
+                
+            }
+            
+        } //: ZSTACK
+        .edgesIgnoringSafeArea(.top)
+    }
+    
+}
+
+struct CustomShape : Shape {
+    
+    func path(in rect: CGRect) -> Path {
+        
+        return Path{path in
+            
+            path.move(to: CGPoint(x: 0, y: 0))
+            path.addLine(to: CGPoint(x: rect.width, y: 0))
+            path.addLine(to: CGPoint(x: rect.width, y: rect.height))
+            path.addLine(to: CGPoint(x: 0, y: rect.height))
+        }
+    }
+}
+
+struct Corners : Shape {
+    func path(in rect: CGRect) -> Path {
+        
+            
+            let path = UIBezierPath(roundedRect: rect, byRoundingCorners: [.topLeft,.topRight], cornerRadii: CGSize(width: 35, height: 35))
+            return Path(path.cgPath)
     }
 }
