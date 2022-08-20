@@ -48,7 +48,7 @@ struct ContentView: View {
                 
                .listRowBackground(LinearGradient(gradient: .init(colors: [Color("Color-1"),Color("Color4"),Color("Color-1")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all))
                 //.listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
-            }//: LIST
+            } //: LIST
                 .listStyle(.plain)
 
                 

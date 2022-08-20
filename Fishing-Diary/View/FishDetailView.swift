@@ -15,8 +15,10 @@ struct FishDetailView: View {
     @State var image : Data = .init(count: 0)
     
     var body: some View {
+        ScrollView {
         Detail(fish: fish)
-       
+        }
+        .edgesIgnoringSafeArea(.all)
     }
         
 }
@@ -49,9 +51,12 @@ struct Detail: View {
             Color("Color-1").edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 0) {
-                Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(systemName: "photo")!))
+                NavigationLink(destination: InsetImageView(fish: fish)) {
+                Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "kalakuva")!))
                     .resizable()
-                    .frame(height: UIScreen.main.bounds.height / 3)
+                    //.frame(height: UIScreen.main.bounds.height / 3)
+                    .scaledToFill()
+                }
                 ZStack(alignment: .topTrailing) {
                 VStack {
                     HStack {
@@ -122,7 +127,7 @@ struct Detail: View {
             }
             
         } //: ZSTACK
-        .edgesIgnoringSafeArea(.top)
+        .edgesIgnoringSafeArea(.all)
     }
     
 }

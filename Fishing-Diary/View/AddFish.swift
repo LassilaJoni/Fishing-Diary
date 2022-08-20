@@ -9,16 +9,17 @@ import SwiftUI
 import CoreData
 
 struct AddFish: View {
-    
-    
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        ZStack{
+        
+        ZStack {
             
             LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color2")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
             
             if UIScreen.main.bounds.height > 800{
                 
                 Home()
+                
             }
             else{
                 
@@ -27,15 +28,22 @@ struct AddFish: View {
                     Home()
                 }
             }
-        }
-    }
+               
+        } //:ZSTACK
+       
+    } //:BODY
+    private func dismissSheet() {
+          presentationMode.wrappedValue.dismiss()
+      }
 }
 
 struct AddFish_Previews: PreviewProvider {
     static var previews: some View {
         AddFish()
     }
+    
 }
+
 /*
  withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)){
  */
@@ -44,14 +52,16 @@ struct Home : View {
 
     @State var image: Data = .init(count: 0)
 
-    
-    var body : some View{
-        
+    @Environment(\.presentationMode) var presentationMode
+    var body : some View {
+
+
         VStack{
             
             Image("fish")
             .resizable()
             .frame(width: 200, height: 180)
+            
             
             Add()
             
@@ -59,10 +69,15 @@ struct Home : View {
             
         }
         .padding()
+        
+     
     }
+    private func dismissSheet() {
+          presentationMode.wrappedValue.dismiss()
+      }
 }
 
-struct Add : View {
+struct Add: View {
     
     @State private var title: String = ""
     @State private var details: String = ""
@@ -70,6 +85,8 @@ struct Add : View {
     
     @State private var image: Data = .init(count: 0)
     
+    @Environment(\.presentationMode) var presentationMode
+    //CORE DATA
     @Environment(\.managedObjectContext) private var moc
     @Environment(\.dismiss) private var dismiss
     
@@ -192,7 +209,9 @@ struct Add : View {
                     .padding(.vertical)
                     .frame(width: UIScreen.main.bounds.width - 100)
                 }
-            }/*.background(
+            }
+            
+            /*.background(
             
                 LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color1")]), startPoint: .leading, endPoint: .trailing)
             )*/
@@ -204,8 +223,18 @@ struct Add : View {
             .offset(y: -40)
             .padding(.bottom, -40)
             .shadow(radius: 15)
+            
+        
         }
+        
+   
     }
+    
+    private func dismissSheet() {
+          presentationMode.wrappedValue.dismiss()
+      }
 }
+
+
 
 

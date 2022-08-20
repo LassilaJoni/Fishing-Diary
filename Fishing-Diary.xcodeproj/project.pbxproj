@@ -25,6 +25,8 @@
 		358EF72B289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 358EF729289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld */; };
 		358EF739289D114A00B858C3 /* AddFishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF738289D114A00B858C3 /* AddFishView.swift */; };
 		358EF73B289D127C00B858C3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF73A289D127C00B858C3 /* ImagePicker.swift */; };
+		35B0BF5228B131B600472E7E /* InsetImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B0BF5128B131B500472E7E /* InsetImageView.swift */; };
+		35B0BF5428B1335800472E7E /* PinchZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B0BF5328B1335800472E7E /* PinchZoomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		358EF72A289D0A9C00B858C3 /* Fishing_Diary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fishing_Diary.xcdatamodel; sourceTree = "<group>"; };
 		358EF738289D114A00B858C3 /* AddFishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFishView.swift; sourceTree = "<group>"; };
 		358EF73A289D127C00B858C3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		35B0BF5128B131B500472E7E /* InsetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetImageView.swift; sourceTree = "<group>"; };
+		35B0BF5328B1335800472E7E /* PinchZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchZoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,8 @@
 				357148D5289D7901009B428C /* DetailMapView.swift */,
 				357148E2289E6CB7009B428C /* AddFish.swift */,
 				357148E628A110F6009B428C /* FishListItemView.swift */,
+				35B0BF5128B131B500472E7E /* InsetImageView.swift */,
+				35B0BF5328B1335800472E7E /* PinchZoomView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,12 +223,14 @@
 				357148C9289D204B009B428C /* FishItemListView.swift in Sources */,
 				358EF721289D0A9700B858C3 /* ContentView.swift in Sources */,
 				357148D6289D7901009B428C /* DetailMapView.swift in Sources */,
+				35B0BF5428B1335800472E7E /* PinchZoomView.swift in Sources */,
 				358EF73B289D127C00B858C3 /* ImagePicker.swift in Sources */,
 				357148E3289E6CB8009B428C /* AddFish.swift in Sources */,
 				358EF72B289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld in Sources */,
 				357148C5289D1A54009B428C /* FishDetailView.swift in Sources */,
 				358EF71F289D0A9700B858C3 /* Fishing_DiaryApp.swift in Sources */,
 				357148C7289D1B2A009B428C /* FishHeaderView.swift in Sources */,
+				35B0BF5228B131B600472E7E /* InsetImageView.swift in Sources */,
 				357148D8289D7976009B428C /* LocationManager.swift in Sources */,
 				357148D4289D2304009B428C /* Fish+CoreDataProperties.swift in Sources */,
 				357148CC289D208A009B428C /* Constant.swift in Sources */,
@@ -361,6 +369,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fishing-Diary/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "FishingDiary requires access to the camera.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is required for showing map.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "FishingDiary requires access to the photo library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -394,6 +403,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fishing-Diary/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "FishingDiary requires access to the camera.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is required for showing map.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "FishingDiary requires access to the photo library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
