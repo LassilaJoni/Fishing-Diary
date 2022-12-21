@@ -18,7 +18,9 @@ struct PersistenceController {
             newItem.timestamp = Date()
             newItem.id = UUID()
             newItem.title = "Kala mökiltä"
-            newItem.details = "Kalan kuvan ottanut Joni ja kalan saanut Joonas"
+            newItem.details = "Kala saatu mökiltä. jgidfjgiodjgdiorgjdriogjdiogjdriogdjriogdrjgiodjgiodrjgdiogjdgoirdjgdrgiordjgogirdji"
+            newItem.specie = "Pike"
+            newItem.weight = "5 kg"
         }
         do {
             try viewContext.save()

@@ -11,7 +11,10 @@ import CoreData
 struct ContentView: View {
     
     init() {
-           UITableView.appearance().backgroundColor = UIColor.clear
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color("Color-List-1"))]
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        UITableView.appearance().backgroundColor = UIColor.clear
         UITableViewCell.appearance().backgroundColor = .clear
 
        }
@@ -23,7 +26,6 @@ struct ContentView: View {
     @FetchRequest(
     sortDescriptors: [
         NSSortDescriptor(keyPath: \Fish.timestamp, ascending: false),
-        //NSSortDescriptor(keyPath: \Fish.title, ascending: true)
         
     ],
     animation: .default)
@@ -32,9 +34,9 @@ struct ContentView: View {
     @State private var image: Data = .init(count: 0)
     
     var body: some View {
-        
+        GeometryReader { geometry in
         NavigationView {
-            LinearGradient(gradient: .init(colors: [Color("Color-1"),Color("Color4"),Color("Color-1")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
+            LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
                 .overlay(
             List {
           
@@ -46,15 +48,16 @@ struct ContentView: View {
                 }
                 
                 
-               .listRowBackground(LinearGradient(gradient: .init(colors: [Color("Color-1"),Color("Color4"),Color("Color-1")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all))
-                //.listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+               .listRowBackground(LinearGradient(gradient: .init(colors: [Color("Color-List-1"),Color("Color-List-2"),Color("Color-List-3"),Color("Color-List-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all))
             } //: LIST
                 .listStyle(.plain)
-
+                .frame(width: geometry.size.width - 20)
+                .cornerRadius(30)
                 
                 
             .navigationTitle("Fishes") //:NAVIGATION
                 .preferredColorScheme(.light)
+            
             )
             
             .toolbar {
@@ -65,14 +68,24 @@ struct ContentView: View {
                         Image(systemName: "plus")
                     }
                 }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        self.showSheet.toggle()
+                    }) {
+                        Image(systemName: "gear")
+                    }
+                }
             }
+            .foregroundColor(Color.white)
             .sheet(isPresented: self.$showSheet) {
                 AddFish().environment(\.managedObjectContext, self.viewContext)
             }
         }
         
+        
 }
         
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

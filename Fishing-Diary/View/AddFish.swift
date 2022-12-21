@@ -28,13 +28,13 @@ struct AddFish: View {
                     Home()
                 }
             }
-               
+            
         } //:ZSTACK
-       
+        
     } //:BODY
     private func dismissSheet() {
-          presentationMode.wrappedValue.dismiss()
-      }
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 struct AddFish_Previews: PreviewProvider {
@@ -49,18 +49,15 @@ struct AddFish_Previews: PreviewProvider {
  */
 struct Home : View {
     
-
+    
     @State var image: Data = .init(count: 0)
-
+    
     @Environment(\.presentationMode) var presentationMode
     var body : some View {
-
-
+        
+        
         VStack{
             
-            Image("fish")
-            .resizable()
-            .frame(width: 200, height: 180)
             
             
             Add()
@@ -70,17 +67,19 @@ struct Home : View {
         }
         .padding()
         
-     
+        
     }
     private func dismissSheet() {
-          presentationMode.wrappedValue.dismiss()
-      }
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 struct Add: View {
     
     @State private var title: String = ""
     @State private var details: String = ""
+    @State private var specie: String = ""
+    @State private var weight: String = ""
     @State private var showSheet: Bool = false
     
     @State private var image: Data = .init(count: 0)
@@ -107,34 +106,34 @@ struct Add: View {
                             .shadow(radius: 8)
                     }
                 } else {
-                
-                Button(action: {
-                    withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)){
-                    self.showSheet.toggle()
                     
-
+                    Button(action: {
+                        withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)){
+                            self.showSheet.toggle()
+                            
+                            
+                        }
+                        
+                    }) {
+                        
+                        Text("Add image")
+                            .foregroundColor(.black)
+                            .fontWeight(.bold)
+                            .padding(.vertical, 10)
+                            .frame(width: (UIScreen.main.bounds.width - 50) / 2)
+                        
                     }
                     
-                }) {
-                    
-                    Text("Add image")
-                        .foregroundColor(.black)
-                        .fontWeight(.bold)
-                        .padding(.vertical, 10)
-                        .frame(width: (UIScreen.main.bounds.width - 50) / 2)
-                    
+                    .sheet(isPresented: self.$showSheet) {
+                        ImagePicker(show: self.$showSheet, image: self.$image)
+                    }
+                    .background(Color.white)
+                    .clipShape(Capsule())
                 }
                 
-                .sheet(isPresented: self.$showSheet) {
-                    ImagePicker(show: self.$showSheet, image: self.$image)
-                }
-                .background(Color.white)
-                .clipShape(Capsule())
-                }
-               
             } .background(Color.black.opacity(0.1))
-            .clipShape(Capsule())
-            .padding(.top, 25)
+                .clipShape(Capsule())
+                .padding(.top, 25)
             
             VStack{
                 
@@ -161,6 +160,24 @@ struct Add: View {
                         .foregroundColor(.black)
                     
                 }.padding(.vertical, 20)
+                HStack(spacing: 15){
+                    
+                    Image(systemName: "rectangle.and.pencil.and.ellipsis")
+                        .foregroundColor(.accentColor)
+                    
+                    TextField("Enter specie...", text: self.$specie)
+                        .foregroundColor(.black)
+                    
+                }.padding(.vertical, 20)
+                HStack(spacing: 15){
+                    
+                    Image(systemName: "scalemass.fill")
+                        .foregroundColor(.accentColor)
+                    
+                    TextField("E.g 7 kg or 15 lb", text: self.$weight)
+                        .foregroundColor(.black)
+                    
+                }.padding(.vertical, 20)
                 
             }
             .padding(.vertical)
@@ -177,12 +194,13 @@ struct Add: View {
                 save.imageData = image
                 save.title = self.title
                 save.details = self.details
+                save.specie = self.specie
+                save.weight = self.weight
                 save.timestamp = Date()
                 save.id = UUID()
                 // TODO: ERROR HANDLING
                 
                 try! self.moc.save()
-               
                 self.title = ""
                 self.details = ""
                 
@@ -190,49 +208,49 @@ struct Add: View {
             }) {
                 if self.title.isEmpty || self.details.isEmpty || self.image.isEmpty {
                     VStack {
+                        Text("SAVE")
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .padding(.vertical)
+                            .frame(width: UIScreen.main.bounds.width - 100)
+                        Text("Please fill all the fields")
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                            .padding(.bottom, 3)
+                            .padding(.top, -20)
+                    }
+                    
+                } else {
                     Text("SAVE")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .padding(.vertical)
                         .frame(width: UIScreen.main.bounds.width - 100)
-                    Text("Please fill all the fields")
-                            .foregroundColor(.red)
-                            .font(.footnote)
-                           .padding(.bottom, 3)
-                           .padding(.top, -20)
-                    }
-                    
-                } else {
-                Text("SAVE")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .padding(.vertical)
-                    .frame(width: UIScreen.main.bounds.width - 100)
                 }
             }
             
             /*.background(
-            
-                LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color1")]), startPoint: .leading, endPoint: .trailing)
-            )*/
+             
+             LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color1")]), startPoint: .leading, endPoint: .trailing)
+             )*/
             //If not empty
             .background((self.title.count > 0 && self.details.count > 0 && self.image.count > 0) ? LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color1")]), startPoint: .leading, endPoint: .trailing):
-                //If empty
-                LinearGradient(gradient: .init(colors: [Color(.gray)]), startPoint: .leading, endPoint: .trailing))
+                            //If empty
+                        LinearGradient(gradient: .init(colors: [Color(.gray)]), startPoint: .leading, endPoint: .trailing))
             .cornerRadius(8)
             .offset(y: -40)
             .padding(.bottom, -40)
             .shadow(radius: 15)
             
-        
+            
         }
         
-   
+        
     }
     
     private func dismissSheet() {
-          presentationMode.wrappedValue.dismiss()
-      }
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 

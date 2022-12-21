@@ -16,44 +16,34 @@ struct FishListItemView: View {
             
            
            
-            VStack {
-                
-                Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(systemName: "photo"))!)
+            HStack {
+                VStack {
+                Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "kalakuva"))!)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                
-                HStack {
-                    VStack(alignment: .leading) {
-                       /* Text("Testi")
-                            .font(.headline)
-                            .foregroundColor(.secondary)*/
+                    .scaledToFit()
+                    .frame(maxWidth: 100)
+                    .cornerRadius(10)
+                    Text(fish.timestamp!, formatter: itemFormatter)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                } //: VSTACK
+                VStack {
                         Text(fish.title ?? "Something went wrong fetching the title")
                             .font(.title)
                             .fontWeight(.black)
-                            .foregroundColor(.primary)
+                            .foregroundColor(Color.black)
                             .lineLimit(3)
-                        Text(fish.timestamp!, formatter: itemFormatter)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    .layoutPriority(100)
-                    
+                       
+                        Text(fish.specie ?? "Error")
+                        .foregroundColor(Color.black)
+                } //: VSTACK
                     //Centers the text
                     //Spacer()
-                    
-                    
-                } //: HSTACK
                 
-                
-                    
-                
-                
-            } //: VSTACK
+            } //: HSTACK
             .padding(.vertical)
             .padding(.horizontal, 10)
             .padding(.bottom, 5)
-            //.background(Color.white)
-            //.cornerRadius(10)
             .padding(.top, 5)
                
 
