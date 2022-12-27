@@ -11,6 +11,7 @@ struct HeadingView: View {
     
     var headingImage: String
     var headingText: String
+    var headingTextColor: String
         
         var body: some View {
             HStack {
@@ -20,7 +21,7 @@ struct HeadingView: View {
                 Text(headingText)
                     .font(.title2)
                     .fontWeight(.heavy)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color("\(headingTextColor)"))
             }
             .padding(.vertical)
         }
@@ -28,7 +29,7 @@ struct HeadingView: View {
 
     struct HeadingView_Previews: PreviewProvider {
         static var previews: some View {
-            HeadingView(headingImage: "photo.on.rectangle.angled", headingText: "Kuvat")
+            HeadingView(headingImage: "photo.on.rectangle.angled", headingText: "Kuvat", headingTextColor: "Color-1")
                 .previewLayout(.sizeThatFits)
                 .padding()
         }

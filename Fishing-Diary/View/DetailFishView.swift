@@ -46,7 +46,7 @@ struct DetailFishView: View {
                        Spacer()
                    }
                    InsetDetailsView(fish: fish)
-                   HeadingView(headingImage: "note.text", headingText: "Notes")
+                   HeadingView(headingImage: "note.text", headingText: "Notes", headingTextColor: "Color1")
                    Text(fish.details ?? "No Data")
                        .font(.title3)
                        .foregroundColor(Color.white)

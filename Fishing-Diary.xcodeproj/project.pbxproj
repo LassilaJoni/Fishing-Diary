@@ -11,7 +11,6 @@
 		355EC3242953578700576A2A /* InsetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC3232953578700576A2A /* InsetDetailsView.swift */; };
 		355EC3262954D5E700576A2A /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC3252954D5E700576A2A /* HeadingView.swift */; };
 		355EC3282955C66B00576A2A /* DetailFishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC3272955C66B00576A2A /* DetailFishView.swift */; };
-		355EC351295B1C2700576A2A /* SaveLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC350295B1C2700576A2A /* SaveLocationMapView.swift */; };
 		357148C5289D1A54009B428C /* FishDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148C4289D1A54009B428C /* FishDetailView.swift */; };
 		357148C7289D1B2A009B428C /* FishHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148C6289D1B2A009B428C /* FishHeaderView.swift */; };
 		357148CC289D208A009B428C /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148CB289D208A009B428C /* Constant.swift */; };
@@ -36,7 +35,6 @@
 		355EC3232953578700576A2A /* InsetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetDetailsView.swift; sourceTree = "<group>"; };
 		355EC3252954D5E700576A2A /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		355EC3272955C66B00576A2A /* DetailFishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFishView.swift; sourceTree = "<group>"; };
-		355EC350295B1C2700576A2A /* SaveLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLocationMapView.swift; sourceTree = "<group>"; };
 		357148C4289D1A54009B428C /* FishDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailView.swift; sourceTree = "<group>"; };
 		357148C6289D1B2A009B428C /* FishHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishHeaderView.swift; sourceTree = "<group>"; };
 		357148CB289D208A009B428C /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 				355EC3232953578700576A2A /* InsetDetailsView.swift */,
 				355EC3252954D5E700576A2A /* HeadingView.swift */,
 				355EC3272955C66B00576A2A /* DetailFishView.swift */,
-				355EC350295B1C2700576A2A /* SaveLocationMapView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -232,7 +229,6 @@
 				358EF73B289D127C00B858C3 /* ImagePicker.swift in Sources */,
 				357148E3289E6CB8009B428C /* AddFish.swift in Sources */,
 				358EF72B289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld in Sources */,
-				355EC351295B1C2700576A2A /* SaveLocationMapView.swift in Sources */,
 				350CDAF92938FCD00055CFC0 /* MapView.swift in Sources */,
 				357148C5289D1A54009B428C /* FishDetailView.swift in Sources */,
 				358EF71F289D0A9700B858C3 /* Fishing_DiaryApp.swift in Sources */,

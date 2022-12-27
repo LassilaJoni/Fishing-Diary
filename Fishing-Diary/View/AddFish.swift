@@ -17,18 +17,10 @@ struct AddFish: View {
             
             LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all)
             
-            if UIScreen.main.bounds.height > 800{
                 ScrollView(.vertical, showsIndicators: false) {
                 Home()
                 }
-            }
-            else{
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    
-                    Home()
-                }
-            }
+ 
             
         } //:ZSTACK
         
@@ -45,9 +37,6 @@ struct AddFish_Previews: PreviewProvider {
     
 }
 
-/*
- withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)){
- */
 struct Home : View {
     
     
@@ -56,17 +45,15 @@ struct Home : View {
     @Environment(\.presentationMode) var presentationMode
     var body : some View {
         
+            
+
+            VStack {
+                Add()
+            }
         
-        VStack{
             
-            
-            
-            Add()
-            
-            
-            
-        }
-        .padding()
+        
+        
         
         
     }
@@ -101,16 +88,6 @@ struct Add: View {
     @Environment(\.managedObjectContext) private var moc
     @Environment(\.dismiss) private var dismiss
     
-    
-    var saveLocationMapView: SaveLocationMapView
-    
-      init() {
-          self.saveLocationMapView = SaveLocationMapView()
-         
-      }
- 
-    
-    
     let radius: CGFloat = 100
     var offset: CGFloat {
         sqrt(radius * radius / 2)
@@ -119,7 +96,6 @@ struct Add: View {
     var body : some View{
         
     
-        
         VStack{
             HStack{
                 
@@ -172,7 +148,7 @@ struct Add: View {
                     .sheet(isPresented: self.$showSheet) {
                         ImagePicker(show: self.$showSheet, image: self.$image)
                     }
-                    .background(Color.white)
+                    .background(Color("Color4"))
                     .clipShape(Capsule())
                 }
                 
@@ -229,71 +205,83 @@ struct Add: View {
                         .foregroundColor(.black)
                     
                 }.padding(.vertical, 20)
+                
+                Group {
+                    HeadingView(headingImage: "map.fill", headingText: "Location", headingTextColor: "Color1")
                 HStack(spacing: 15){
                     
+                    ZStack {
                     Map(coordinateRegion: $region,
                                     interactionModes: .all,
                                     showsUserLocation: true)
-                        .frame(width: 350, height: 250)
-                    
+                        .frame(width: 325, height: 270)
+                    Cross().stroke(Color.red)
+                                   .frame(width: 50, height: 50)
+                    }
                 }.padding(.vertical, 20)
                 
-                Text("lat: \(region.center.latitude), long: \(region.center.longitude). Zoom: \(region.span.latitudeDelta)")
+                Text("lat: \(region.center.latitude), long: \(region.center.longitude)")
+            }
             }
             .ignoresSafeArea(.keyboard)
             .padding(.vertical)
             .padding(.horizontal, 20)
             .padding(.bottom, 40)
             .background(
-                    LinearGradient(gradient: Gradient(colors: [Color("Color-List-1"),Color("Color-List-2"),Color("Color-List-3"),Color("Color-List-5")]), startPoint: .leading, endPoint: .bottom)
+                    LinearGradient(gradient: Gradient(colors: [Color("Color4")]), startPoint: .leading, endPoint: .bottom)
                 )
             .cornerRadius(10)
             .padding(.top, 25)
             
             
             Button(action: {
-                let save = Fish(context: self.moc)
-                
-                save.imageData = image
-                save.title = self.title
-                save.details = self.details
-                save.specie = self.specie
-                save.weight = self.weight
-                save.timestamp = Date()
-                save.lat = region.center.latitude
-                save.long = region.center.longitude
-                save.id = UUID()
-                // TODO: ERROR HANDLING
-                
-                try! self.moc.save()
-                self.title = ""
-                self.details = ""
-                
-                dismiss()
-            }) {
-                if self.title.isEmpty || self.details.isEmpty || self.image.isEmpty {
-                    VStack {
-                        Text("SAVE")
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-                            .padding(.vertical)
-                            .frame(width: UIScreen.main.bounds.width - 100)
-                        Text("Please fill all the fields")
-                            .foregroundColor(.red)
-                            .font(.footnote)
-                            .padding(.bottom, 3)
-                            .padding(.top, -20)
-                    }
-                    
-                } else {
-                    Text("SAVE")
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                        .padding(.vertical)
-                        .frame(width: UIScreen.main.bounds.width - 100)
+                            let save = Fish(context: self.moc)
+                            
+                            save.imageData = image
+                            save.title = self.title
+                            save.details = self.details
+                            save.specie = self.specie
+                            save.weight = self.weight
+                            save.timestamp = Date()
+                            save.lat = region.center.latitude
+                            save.long = region.center.longitude
+                            save.id = UUID()
+                            // TODO: ERROR HANDLING
+                            
+                do {
+                    try self.moc.save()
+                    //self.title = ""
+                    //self.details = ""
+                }catch {
+                    print("Error in saving data")
                 }
-            }
-            
+    
+                            
+                            dismiss()
+                        }) {
+                            if self.title.isEmpty || self.details.isEmpty || self.image.isEmpty {
+                                VStack {
+                                    Text("SAVE")
+                                        .foregroundColor(.white)
+                                        .fontWeight(.bold)
+                                        .padding(.vertical)
+                                        .frame(width: UIScreen.main.bounds.width - 100)
+                                    Text("Please fill all the fields")
+                                        .foregroundColor(.red)
+                                        .font(.footnote)
+                                        .padding(.bottom, 3)
+                                        .padding(.top, -20)
+                                }
+                                
+                            } else {
+                                Text("SAVE")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.bold)
+                                    .padding(.vertical)
+                                    .frame(width: UIScreen.main.bounds.width - 100)
+                            }
+                        }
+                        .disabled(self.image.isEmpty || self.title.isEmpty || self.details.isEmpty || self.specie.isEmpty || self.weight.isEmpty)
             /*.background(
              
              LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color1")]), startPoint: .leading, endPoint: .trailing)
@@ -307,8 +295,8 @@ struct Add: View {
             .padding(.bottom, -40)
             .shadow(radius: 15)
             
-        }
-        
+        } //: VSTACK
+ 
         
     }
     
@@ -316,3 +304,19 @@ struct Add: View {
         presentationMode.wrappedValue.dismiss()
     }
 }
+
+
+// Cross for the map
+
+struct Cross: Shape {
+    func path(in rect: CGRect) -> Path {
+        return Path { path in
+            path.move(to: CGPoint(x: rect.midX, y: 0))
+            path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
+            path.move(to: CGPoint(x: 0, y: rect.midY))
+            path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
+            path.move(to: CGPoint(x: rect.midX, y: rect.midY))
+        }
+    }
+}
+

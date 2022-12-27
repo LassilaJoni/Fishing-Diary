@@ -58,12 +58,6 @@ struct Detail: View {
     @State var image : Data = .init(count: 0)
     @State private var isShowingDialog = false
     
-    private enum MapDefaults {
-         static let latitude = 45.872
-         static let longitude = -1.248
-         static let zoom = 0.5
-     }
-    
     let fish: Fish
     let annotations: [City]
     @State private var region: MKCoordinateRegion
@@ -75,14 +69,14 @@ struct Detail: View {
            ]
 
            self.region = MKCoordinateRegion(
-               center: CLLocationCoordinate2D(latitude: MapDefaults.latitude, longitude: MapDefaults.longitude),
-               span: MKCoordinateSpan(latitudeDelta: MapDefaults.zoom, longitudeDelta: MapDefaults.zoom))
+            center: CLLocationCoordinate2D(latitude: fish.lat, longitude: fish.long),
+            span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
        }
     
     var body: some View {
         
         VStack {
-            Color("Color-1").edgesIgnoringSafeArea(.all)
+            //Color("Color-1").edgesIgnoringSafeArea(.all)
             
             VStack {
                 NavigationLink(destination: InsetImageView(fish: fish)) {
@@ -108,21 +102,19 @@ struct Detail: View {
                                     .fontWeight(.bold)
                                  .foregroundColor(.gray)
                             } //:VSTACK
+                            .padding(.leading, 10) //:HSTACK
                             Spacer()
                         } //:HSTACK
-                        //  .padding(.top, 15)
                
                             InsetDetailsView(fish: fish)
                  
                         HStack {
                             
                             VStack(alignment: .center, spacing: 25) {
-                                HeadingView(headingImage: "note.text", headingText: "Notes")
+                                HeadingView(headingImage: "note.text", headingText: "Notes", headingTextColor: "Color4")
                                 Text(fish.details ?? "No Data")
                                     .font(.title3)
                                     .foregroundColor(Color.white)
-                                Text(String(fish.lat))
-                                Text(String(fish.long))
                                 Map(coordinateRegion: $region,
                                                 interactionModes: .all,
                                                 showsUserLocation: true,
@@ -152,8 +144,13 @@ struct Detail: View {
                                 .confirmationDialog("Are you sure to delete the data, this action can't be reversed?", isPresented: $isShowingDialog, titleVisibility: .visible) {
                                     
                                     Button("Confirm", role: .destructive) {
-                                        moc.delete(self.fish)
-                                        try! moc.save()
+                                        
+                                        do {
+                                            moc.delete(self.fish)
+                                            try moc.save()
+                                        } catch {
+                                            print("Error deleting data")
+                                        }
                                     }
                                     Button("Cancel", role: .cancel) {
                                         
