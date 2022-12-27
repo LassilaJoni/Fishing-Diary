@@ -1,16 +1,16 @@
 //
-//  MapView.swift
+//  SaveLocationMapView.swift
 //  Fishing-Diary
 //
-//  Created by Joni Lassila on 1.12.2022.
+//  Created by Joni Lassila on 27.12.2022.
 //
 
 import SwiftUI
 import MapKit
 
-struct MapView: View {
+struct SaveLocationMapView: View {
     
-    @State private var region: MKCoordinateRegion = {
+    @State public var region: MKCoordinateRegion = {
         var mapCoordinates = CLLocationCoordinate2D(latitude: 6.600286, longitude: 16.4377599)
         var mapZoomLevel = MKCoordinateSpan(latitudeDelta: 70.0, longitudeDelta: 70.0)
         var mapRegion = MKCoordinateRegion(center: mapCoordinates, span: mapZoomLevel)
@@ -18,22 +18,21 @@ struct MapView: View {
         return mapRegion
     }()
     
+    func getCoordinates() -> (Double, Double) {
+        return (region.center.longitude, region.center.latitude)
+    }
     
     var body: some View {
        Map(coordinateRegion: $region, showsUserLocation: true)
         Text("Long: \(region.center.longitude) Lat: \(region.center.latitude)")
             
     }
-}
-
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
-    }
+   
 }
 
 
-final class MapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate {
+
+final class SaveLocationMapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     
     func checkIfLocationServicesIsEnabled() {
@@ -43,6 +42,8 @@ final class MapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate {
             print("Location not enabled")
         }
     }
+    
+    
     
     func checkLocationAuthorization() {
         guard let locationManager = locationManager else {return}
@@ -69,3 +70,8 @@ final class MapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
 }
+
+
+
+
+

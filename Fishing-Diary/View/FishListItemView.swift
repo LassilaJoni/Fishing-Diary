@@ -23,22 +23,18 @@ struct FishListItemView: View {
                     .scaledToFit()
                     .frame(maxWidth: 100)
                     .cornerRadius(10)
-                    Text(fish.timestamp!, formatter: itemFormatter)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
                 } //: VSTACK
                 VStack {
                         Text(fish.title ?? "Something went wrong fetching the title")
                             .font(.title)
-                            .fontWeight(.black)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color.white)
                             .lineLimit(3)
                        
                         Text(fish.specie ?? "Error")
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color.white)
                 } //: VSTACK
                     //Centers the text
-                    //Spacer()
+            
                 
             } //: HSTACK
             .padding(.vertical)

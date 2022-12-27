@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import MapKit
 
 struct AddFish: View {
     @Environment(\.presentationMode) var presentationMode
@@ -14,12 +15,12 @@ struct AddFish: View {
         
         ZStack {
             
-            LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color2")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
+            LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all)
             
             if UIScreen.main.bounds.height > 800{
-                
+                ScrollView(.vertical, showsIndicators: false) {
                 Home()
-                
+                }
             }
             else{
                 
@@ -84,12 +85,40 @@ struct Add: View {
     
     @State private var image: Data = .init(count: 0)
     
+    
+    @State private var region: MKCoordinateRegion = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: MapDefaults.latitude, longitude: MapDefaults.longitude),
+            span: MKCoordinateSpan(latitudeDelta: MapDefaults.zoom, longitudeDelta: MapDefaults.zoom))
+    
+    private enum MapDefaults {
+         static let latitude = 45.872
+         static let longitude = -1.248
+         static let zoom = 0.5
+     }
+    
     @Environment(\.presentationMode) var presentationMode
     //CORE DATA
     @Environment(\.managedObjectContext) private var moc
     @Environment(\.dismiss) private var dismiss
     
+    
+    var saveLocationMapView: SaveLocationMapView
+    
+      init() {
+          self.saveLocationMapView = SaveLocationMapView()
+         
+      }
+ 
+    
+    
+    let radius: CGFloat = 100
+    var offset: CGFloat {
+        sqrt(radius * radius / 2)
+    }
+    
     var body : some View{
+        
+    
         
         VStack{
             HStack{
@@ -99,11 +128,27 @@ struct Add: View {
                         self.showSheet.toggle()
                     }) {
                         Image(uiImage: UIImage(data: self.image)!)
-                            .renderingMode(.original)
                             .resizable()
-                            .frame(width: 150, height: 150)
-                            .cornerRadius(20)
-                            .shadow(radius: 8)
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(
+                                        width: radius * 2,
+                                        height: radius * 2)
+                                    .clipShape(Circle())
+                            .overlay(
+                                Button(action: { self.showSheet.toggle()}) {
+                                Image(systemName: "camera.fill")
+                                    .foregroundColor(.black)
+                                    .padding(8)
+                                    .background(Color.gray)
+                                    .clipShape(Circle())
+                                    .background(
+                                        Circle()
+                                            .stroke(Color.white, lineWidth: 2)
+                                    )
+                            }.offset(x: offset, y: offset))
+                            .sheet(isPresented: self.$showSheet) {
+                                ImagePicker(show: self.$showSheet, image: self.$image)
+                            }
                     }
                 } else {
                     
@@ -131,9 +176,9 @@ struct Add: View {
                     .clipShape(Capsule())
                 }
                 
-            } .background(Color.black.opacity(0.1))
-                .clipShape(Capsule())
-                .padding(.top, 25)
+            }
+               
+                
             
             VStack{
                 
@@ -160,6 +205,9 @@ struct Add: View {
                         .foregroundColor(.black)
                     
                 }.padding(.vertical, 20)
+                
+                Divider()
+                
                 HStack(spacing: 15){
                     
                     Image(systemName: "rectangle.and.pencil.and.ellipsis")
@@ -169,6 +217,9 @@ struct Add: View {
                         .foregroundColor(.black)
                     
                 }.padding(.vertical, 20)
+                
+                Divider()
+                
                 HStack(spacing: 15){
                     
                     Image(systemName: "scalemass.fill")
@@ -178,12 +229,24 @@ struct Add: View {
                         .foregroundColor(.black)
                     
                 }.padding(.vertical, 20)
+                HStack(spacing: 15){
+                    
+                    Map(coordinateRegion: $region,
+                                    interactionModes: .all,
+                                    showsUserLocation: true)
+                        .frame(width: 350, height: 250)
+                    
+                }.padding(.vertical, 20)
                 
+                Text("lat: \(region.center.latitude), long: \(region.center.longitude). Zoom: \(region.span.latitudeDelta)")
             }
+            .ignoresSafeArea(.keyboard)
             .padding(.vertical)
             .padding(.horizontal, 20)
             .padding(.bottom, 40)
-            .background(Color.white)
+            .background(
+                    LinearGradient(gradient: Gradient(colors: [Color("Color-List-1"),Color("Color-List-2"),Color("Color-List-3"),Color("Color-List-5")]), startPoint: .leading, endPoint: .bottom)
+                )
             .cornerRadius(10)
             .padding(.top, 25)
             
@@ -197,6 +260,8 @@ struct Add: View {
                 save.specie = self.specie
                 save.weight = self.weight
                 save.timestamp = Date()
+                save.lat = region.center.latitude
+                save.long = region.center.longitude
                 save.id = UUID()
                 // TODO: ERROR HANDLING
                 
@@ -242,7 +307,6 @@ struct Add: View {
             .padding(.bottom, -40)
             .shadow(radius: 15)
             
-            
         }
         
         
@@ -252,7 +316,3 @@ struct Add: View {
         presentationMode.wrappedValue.dismiss()
     }
 }
-
-
-
-

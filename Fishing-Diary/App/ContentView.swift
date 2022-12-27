@@ -12,10 +12,8 @@ struct ContentView: View {
     
     init() {
         let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color("Color-List-1"))]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.white)]
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        UITableView.appearance().backgroundColor = UIColor.clear
-        UITableViewCell.appearance().backgroundColor = .clear
 
        }
     
@@ -35,28 +33,28 @@ struct ContentView: View {
     
     var body: some View {
         GeometryReader { geometry in
-        NavigationView {
-            LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
+        NavigationView{
+            LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4"),Color("Color-List-Outside-5")]), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.all)
                 .overlay(
-            List {
-          
+                   
+                    List {
                 ForEach(fishes, id: \.id) { fish in
                     NavigationLink(destination: FishDetailView(fish: fish)) {
                         FishListItemView(fish: fish)
                     }
-                    
                 }
                 
                 
-               .listRowBackground(LinearGradient(gradient: .init(colors: [Color("Color-List-1"),Color("Color-List-2"),Color("Color-List-3"),Color("Color-List-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all))
+               .listRowBackground(LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-5"),Color("Color-List-Outside-4"),Color("Color-List-Outside-3"),Color("Color-List-Outside-2"),Color("Color-List-Outside-1")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all))
+               
             } //: LIST
                 .listStyle(.plain)
-                .frame(width: geometry.size.width - 20)
-                .cornerRadius(30)
+                //.cornerRadius(30)
                 
                 
-            .navigationTitle("Fishes") //:NAVIGATION
-                .preferredColorScheme(.light)
+                
+            .navigationTitle("Fishing Diary") //:NAVIGATION
+                .preferredColorScheme(.dark)
             
             )
             

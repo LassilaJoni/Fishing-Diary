@@ -21,6 +21,8 @@ struct PersistenceController {
             newItem.details = "Kala saatu mökiltä. jgidfjgiodjgdiorgjdriogjdiogjdriogdjriogdrjgiodjgiodrjgdiogjdgoirdjgdrgiordjgogirdji"
             newItem.specie = "Pike"
             newItem.weight = "5 kg"
+            newItem.lat = 12.444
+            newItem.long = 12.333
         }
         do {
             try viewContext.save()

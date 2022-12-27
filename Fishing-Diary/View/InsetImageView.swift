@@ -32,7 +32,7 @@ struct InsetImageView: View {
                                               .foregroundColor(.accentColor)
                                           }
                                       } //: TOOLBAR
-                                      .background(.blue)
+                                      .background(.black)
     } //: BODY
         
 }
