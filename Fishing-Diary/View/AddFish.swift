@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import MapKit
+import CoreLocationUI
 
 struct AddFish: View {
     @Environment(\.presentationMode) var presentationMode
@@ -16,10 +17,11 @@ struct AddFish: View {
         ZStack {
             
             LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all)
-            
+
                 ScrollView(.vertical, showsIndicators: false) {
                 Home()
                 }
+            
  
             
         } //:ZSTACK
@@ -46,11 +48,11 @@ struct Home : View {
     var body : some View {
         
             
-
-            VStack {
+            VStack(alignment: .center) {
                 Add()
             }
-        
+            
+
             
         
         
@@ -73,25 +75,30 @@ struct Add: View {
     @State private var image: Data = .init(count: 0)
     
     
-    @State private var region: MKCoordinateRegion = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: MapDefaults.latitude, longitude: MapDefaults.longitude),
-            span: MKCoordinateSpan(latitudeDelta: MapDefaults.zoom, longitudeDelta: MapDefaults.zoom))
+    @ObservedObject var locationManager = LocationManager.shared
     
-    private enum MapDefaults {
-         static let latitude = 45.872
-         static let longitude = -1.248
-         static let zoom = 0.5
-     }
+    @State private var region = MKCoordinateRegion(center: LocationManager.currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+    
+    
+    @State var tracking:MapUserTrackingMode = .follow
     
     @Environment(\.presentationMode) var presentationMode
     //CORE DATA
     @Environment(\.managedObjectContext) private var moc
     @Environment(\.dismiss) private var dismiss
     
+  
+    
     let radius: CGFloat = 100
     var offset: CGFloat {
         sqrt(radius * radius / 2)
     }
+    
+    
+    private func updateMapView() {
+            locationManager.requestLocation()
+        region = MKCoordinateRegion(center: LocationManager.currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        }
     
     var body : some View{
         
@@ -153,7 +160,7 @@ struct Add: View {
                 }
                 
             }
-               
+            .padding(.vertical, 20)
                 
             
             VStack{
@@ -205,21 +212,40 @@ struct Add: View {
                         .foregroundColor(.black)
                     
                 }.padding(.vertical, 20)
-                
+                Divider()
                 Group {
                     HeadingView(headingImage: "map.fill", headingText: "Location", headingTextColor: "Color1")
-                HStack(spacing: 15){
+                
                     
                     ZStack {
-                    Map(coordinateRegion: $region,
-                                    interactionModes: .all,
-                                    showsUserLocation: true)
-                        .frame(width: 325, height: 270)
+                   
+                        Map(coordinateRegion: $region,
+                                   interactionModes: .all,
+                                   showsUserLocation: true,
+                                userTrackingMode: $tracking)
+                        .onAppear(perform: updateMapView)
+                    .frame(width: UIScreen.main.bounds.width - 40, height: 400)
                     Cross().stroke(Color.red)
-                                   .frame(width: 50, height: 50)
+                    .frame(width: 50, height: 50)
+                        VStack {
+                        Spacer()
+                      
+                        
+                 
+                  
                     }
-                }.padding(.vertical, 20)
-                
+                    
+                    }
+                    LocationButton {
+                        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                        let region = MKCoordinateRegion(center: LocationManager.currentLocation, span: span)
+                            self.region = region
+                    }
+                    .frame(width: 180, height: 40)
+                                    .cornerRadius(30)
+                                    .symbolVariant(.fill)
+                                    .foregroundColor(.white)
+                                    .padding(.bottom, 10)
                 Text("lat: \(region.center.latitude), long: \(region.center.longitude)")
             }
             }
@@ -282,11 +308,6 @@ struct Add: View {
                             }
                         }
                         .disabled(self.image.isEmpty || self.title.isEmpty || self.details.isEmpty || self.specie.isEmpty || self.weight.isEmpty)
-            /*.background(
-             
-             LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color1")]), startPoint: .leading, endPoint: .trailing)
-             )*/
-            //If not empty
             .background((self.title.count > 0 && self.details.count > 0 && self.image.count > 0) ? LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color1")]), startPoint: .leading, endPoint: .trailing):
                             //If empty
                         LinearGradient(gradient: .init(colors: [Color(.gray)]), startPoint: .leading, endPoint: .trailing))
@@ -303,6 +324,9 @@ struct Add: View {
     private func dismissSheet() {
         presentationMode.wrappedValue.dismiss()
     }
+    
+    
+    
 }
 
 

@@ -33,39 +33,39 @@ struct MapView_Previews: PreviewProvider {
 }
 
 
-final class MapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate {
-    var locationManager: CLLocationManager?
-    
-    func checkIfLocationServicesIsEnabled() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager = CLLocationManager()
-        } else {
-            print("Location not enabled")
-        }
-    }
-    
-    func checkLocationAuthorization() {
-        guard let locationManager = locationManager else {return}
-
-        switch locationManager.authorizationStatus {
-            
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            //Alert to user it's restricted, maybe becayse of parental controls
-            print("Restricted.")
-        case .denied:
-            //Alert that user needs to go into settings to change it
-            print("Denied")
-        case .authorizedAlways, .authorizedWhenInUse:
-            break
-        @unknown default:
-            break
-        }
-    }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAuthorization()
-    }
-    
-}
+//final class MapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate {
+//    var locationManager: CLLocationManager?
+//
+//    func checkIfLocationServicesIsEnabled() {
+//        if CLLocationManager.locationServicesEnabled() {
+//            locationManager = CLLocationManager()
+//        } else {
+//            print("Location not enabled")
+//        }
+//    }
+//
+//    func checkLocationAuthorization() {
+//        guard let locationManager = locationManager else {return}
+//
+//        switch locationManager.authorizationStatus {
+//
+//        case .notDetermined:
+//            locationManager.requestWhenInUseAuthorization()
+//        case .restricted:
+//            //Alert to user it's restricted, maybe becayse of parental controls
+//            print("Restricted.")
+//        case .denied:
+//            //Alert that user needs to go into settings to change it
+//            print("Denied")
+//        case .authorizedAlways, .authorizedWhenInUse:
+//            break
+//        @unknown default:
+//            break
+//        }
+//    }
+//
+//    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+//        checkLocationAuthorization()
+//    }
+//
+//}
