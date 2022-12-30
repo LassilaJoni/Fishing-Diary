@@ -15,26 +15,26 @@ struct InsetDetailsView: View {
     
     var body: some View {
         VStack {
-        HStack {
-            Text("Fish specie:")
-                .font(.body)
-                .fontWeight(.bold)
-                .foregroundColor(Color.white)
-                .padding()
-            Text(fish.specie ?? "Error getting fish weight")
-                       .foregroundColor(.white)
-                       .padding()
-                   Spacer()
-                   Image(systemName: "pawprint.fill")
-                       .foregroundColor(Color("Color-1"))
-                       .padding()
-                       .background(Color.white)
-                       .cornerRadius(20)
-                       .padding([.trailing], 5)
-               } //: VSTACK
-               .frame(maxWidth: .infinity, maxHeight: 60)
-               .background(Color("Color-1"))
-               .cornerRadius(10)
+//        HStack {
+////            Text("Fish specie:")
+////                .font(.body)
+////                .fontWeight(.bold)
+////                .foregroundColor(Color.white)
+////                .padding()
+////            Text(fish.specie ?? "Error getting fish weight")
+////                       .foregroundColor(.white)
+////                       .padding()
+////                   Spacer()
+////                   Image(systemName: "pawprint.fill")
+////                       .foregroundColor(Color("Color-1"))
+////                       .padding()
+////                       .background(Color.white)
+////                       .cornerRadius(20)
+////                       .padding([.trailing], 5)
+//               } //: VSTACK
+//               .frame(maxWidth: .infinity, maxHeight: 60)
+//               .background(Color("Color-1"))
+//               .cornerRadius(10)
         
         HStack {
             Text("Fish weight:")

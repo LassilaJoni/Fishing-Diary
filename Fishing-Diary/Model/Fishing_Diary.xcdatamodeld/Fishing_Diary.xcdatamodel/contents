@@ -6,12 +6,11 @@
         <attribute name="imageData" optional="YES" attributeType="Binary"/>
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="long" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="specie" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="weight" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Fish" positionX="-63" positionY="-9" width="128" height="164"/>
+        <element name="Fish" positionX="-63" positionY="-9" width="128" height="149"/>
     </elements>
 </model>

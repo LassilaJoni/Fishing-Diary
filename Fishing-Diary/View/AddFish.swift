@@ -68,7 +68,6 @@ struct Add: View {
     
     @State private var title: String = ""
     @State private var details: String = ""
-    @State private var specie: String = ""
     @State private var weight: String = ""
     @State private var showSheet: Bool = false
     
@@ -170,7 +169,7 @@ struct Add: View {
                     Image(systemName: "rectangle.and.pencil.and.ellipsis")
                         .foregroundColor(.accentColor)
                     
-                    TextField("Enter title...", text: self.$title)
+                    TextField("Enter catch name...", text: self.$title)
                         .preferredColorScheme(.light)
                         .foregroundColor(.black)
                     
@@ -184,22 +183,22 @@ struct Add: View {
                     Image(systemName: "rectangle.and.pencil.and.ellipsis")
                         .foregroundColor(.accentColor)
                     
-                    TextField("Enter description...", text: self.$details)
+                    TextField("Enter notes about catch...", text: self.$details)
                         .foregroundColor(.black)
                     
                 }.padding(.vertical, 20)
-                
-                Divider()
-                
-                HStack(spacing: 15){
-                    
-                    Image(systemName: "rectangle.and.pencil.and.ellipsis")
-                        .foregroundColor(.accentColor)
-                    
-                    TextField("Enter specie...", text: self.$specie)
-                        .foregroundColor(.black)
-                    
-                }.padding(.vertical, 20)
+//
+//                Divider()
+//
+//                HStack(spacing: 15){
+//
+//                    Image(systemName: "rectangle.and.pencil.and.ellipsis")
+//                        .foregroundColor(.accentColor)
+//
+//                    TextField("Enter specie...", text: self.$specie)
+//                        .foregroundColor(.black)
+//
+//                }.padding(.vertical, 20)
                 
                 Divider()
                 
@@ -266,7 +265,7 @@ struct Add: View {
                             save.imageData = image
                             save.title = self.title
                             save.details = self.details
-                            save.specie = self.specie
+                           // save.specie = self.specie
                             save.weight = self.weight
                             save.timestamp = Date()
                             save.lat = region.center.latitude
@@ -307,7 +306,7 @@ struct Add: View {
                                     .frame(width: UIScreen.main.bounds.width - 100)
                             }
                         }
-                        .disabled(self.image.isEmpty || self.title.isEmpty || self.details.isEmpty || self.specie.isEmpty || self.weight.isEmpty)
+                        .disabled(self.image.isEmpty || self.title.isEmpty || self.details.isEmpty || self.weight.isEmpty)
             .background((self.title.count > 0 && self.details.count > 0 && self.image.count > 0) ? LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color1")]), startPoint: .leading, endPoint: .trailing):
                             //If empty
                         LinearGradient(gradient: .init(colors: [Color(.gray)]), startPoint: .leading, endPoint: .trailing))

@@ -2,70 +2,37 @@
 //  MapView.swift
 //  Fishing-Diary
 //
-//  Created by Joni Lassila on 1.12.2022.
+//  Created by Joni Lassila on 29.12.2022.
 //
 
 import SwiftUI
 import MapKit
+import CoreData
 
-struct MapView: View {
-    
-    @State private var region: MKCoordinateRegion = {
-        var mapCoordinates = CLLocationCoordinate2D(latitude: 6.600286, longitude: 16.4377599)
-        var mapZoomLevel = MKCoordinateSpan(latitudeDelta: 70.0, longitudeDelta: 70.0)
-        var mapRegion = MKCoordinateRegion(center: mapCoordinates, span: mapZoomLevel)
-        
-        return mapRegion
-    }()
-    
-    
-    var body: some View {
-       Map(coordinateRegion: $region, showsUserLocation: true)
-        Text("Long: \(region.center.longitude) Lat: \(region.center.latitude)")
-            
+struct MapView: UIViewRepresentable {
+    @Environment(\.managedObjectContext) var managedObjectContext
+
+    func makeUIView(context: Context) -> MKMapView {
+        let mapView = MKMapView()
+        return mapView
+    }
+
+    func updateUIView(_ uiView: MKMapView, context: Context) {
+        let request: NSFetchRequest<Fish> = Fish.fetchRequest()
+        do {
+            let pins = try managedObjectContext.fetch(request)
+            if(pins.isEmpty) {
+                print("perse")
+            } else {
+            for pin in pins {
+                let annotation = MKPointAnnotation()
+                annotation.title = pin.title
+                annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
+                uiView.addAnnotation(annotation)
+            }
+            }
+        } catch {
+            print(error)
+        }
     }
 }
-
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
-    }
-}
-
-
-//final class MapViewModel:NSObject, ObservableObject, CLLocationManagerDelegate {
-//    var locationManager: CLLocationManager?
-//
-//    func checkIfLocationServicesIsEnabled() {
-//        if CLLocationManager.locationServicesEnabled() {
-//            locationManager = CLLocationManager()
-//        } else {
-//            print("Location not enabled")
-//        }
-//    }
-//
-//    func checkLocationAuthorization() {
-//        guard let locationManager = locationManager else {return}
-//
-//        switch locationManager.authorizationStatus {
-//
-//        case .notDetermined:
-//            locationManager.requestWhenInUseAuthorization()
-//        case .restricted:
-//            //Alert to user it's restricted, maybe becayse of parental controls
-//            print("Restricted.")
-//        case .denied:
-//            //Alert that user needs to go into settings to change it
-//            print("Denied")
-//        case .authorizedAlways, .authorizedWhenInUse:
-//            break
-//        @unknown default:
-//            break
-//        }
-//    }
-//
-//    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-//        checkLocationAuthorization()
-//    }
-//
-//}

@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		350CDAF92938FCD00055CFC0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350CDAF82938FCD00055CFC0 /* MapView.swift */; };
+		3503B9A0295EDD2900F37B0B /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503B99F295EDD2900F37B0B /* ViewRouter.swift */; };
+		3503B9A5295F017D00F37B0B /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503B9A4295F017D00F37B0B /* NavigationBarView.swift */; };
 		355EC3242953578700576A2A /* InsetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC3232953578700576A2A /* InsetDetailsView.swift */; };
 		355EC3262954D5E700576A2A /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC3252954D5E700576A2A /* HeadingView.swift */; };
 		355EC3282955C66B00576A2A /* DetailFishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC3272955C66B00576A2A /* DetailFishView.swift */; };
 		355EC355295C5F7600576A2A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC354295C5F7500576A2A /* LocationManager.swift */; };
+		355EC357295D9AA000576A2A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC356295D9AA000576A2A /* MapView.swift */; };
+		355EC359295D9C2700576A2A /* MapMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC358295D9C2700576A2A /* MapMainView.swift */; };
 		357148C5289D1A54009B428C /* FishDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148C4289D1A54009B428C /* FishDetailView.swift */; };
 		357148C7289D1B2A009B428C /* FishHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148C6289D1B2A009B428C /* FishHeaderView.swift */; };
 		357148CC289D208A009B428C /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357148CB289D208A009B428C /* Constant.swift */; };
@@ -25,18 +28,20 @@
 		358EF726289D0A9C00B858C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 358EF725289D0A9C00B858C3 /* Preview Assets.xcassets */; };
 		358EF728289D0A9C00B858C3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF727289D0A9C00B858C3 /* Persistence.swift */; };
 		358EF72B289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 358EF729289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld */; };
-		358EF739289D114A00B858C3 /* AddFishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF738289D114A00B858C3 /* AddFishView.swift */; };
 		358EF73B289D127C00B858C3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF73A289D127C00B858C3 /* ImagePicker.swift */; };
 		35B0BF5228B131B600472E7E /* InsetImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B0BF5128B131B500472E7E /* InsetImageView.swift */; };
 		35B0BF5428B1335800472E7E /* PinchZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B0BF5328B1335800472E7E /* PinchZoomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		350CDAF82938FCD00055CFC0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		3503B99F295EDD2900F37B0B /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
+		3503B9A4295F017D00F37B0B /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		355EC3232953578700576A2A /* InsetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetDetailsView.swift; sourceTree = "<group>"; };
 		355EC3252954D5E700576A2A /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		355EC3272955C66B00576A2A /* DetailFishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFishView.swift; sourceTree = "<group>"; };
 		355EC354295C5F7500576A2A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		355EC356295D9AA000576A2A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		355EC358295D9C2700576A2A /* MapMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMainView.swift; sourceTree = "<group>"; };
 		357148C4289D1A54009B428C /* FishDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailView.swift; sourceTree = "<group>"; };
 		357148C6289D1B2A009B428C /* FishHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishHeaderView.swift; sourceTree = "<group>"; };
 		357148CB289D208A009B428C /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -51,7 +56,6 @@
 		358EF725289D0A9C00B858C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		358EF727289D0A9C00B858C3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		358EF72A289D0A9C00B858C3 /* Fishing_Diary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fishing_Diary.xcdatamodel; sourceTree = "<group>"; };
-		358EF738289D114A00B858C3 /* AddFishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFishView.swift; sourceTree = "<group>"; };
 		358EF73A289D127C00B858C3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		35B0BF5128B131B500472E7E /* InsetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetImageView.swift; sourceTree = "<group>"; };
 		35B0BF5328B1335800472E7E /* PinchZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchZoomView.swift; sourceTree = "<group>"; };
@@ -68,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3503B9A3295F016700F37B0B /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				3503B9A4295F017D00F37B0B /* NavigationBarView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		357148CA289D207E009B428C /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,17 +139,18 @@
 		358EF736289D112600B858C3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				358EF738289D114A00B858C3 /* AddFishView.swift */,
+				3503B9A3295F016700F37B0B /* Navigation */,
+				355EC356295D9AA000576A2A /* MapView.swift */,
 				357148C4289D1A54009B428C /* FishDetailView.swift */,
 				357148C6289D1B2A009B428C /* FishHeaderView.swift */,
 				357148E2289E6CB7009B428C /* AddFish.swift */,
 				357148E628A110F6009B428C /* FishListItemView.swift */,
 				35B0BF5128B131B500472E7E /* InsetImageView.swift */,
 				35B0BF5328B1335800472E7E /* PinchZoomView.swift */,
-				350CDAF82938FCD00055CFC0 /* MapView.swift */,
 				355EC3232953578700576A2A /* InsetDetailsView.swift */,
 				355EC3252954D5E700576A2A /* HeadingView.swift */,
 				355EC3272955C66B00576A2A /* DetailFishView.swift */,
+				355EC358295D9C2700576A2A /* MapMainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -149,6 +162,7 @@
 				358EF729289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld */,
 				358EF727289D0A9C00B858C3 /* Persistence.swift */,
 				358EF73A289D127C00B858C3 /* ImagePicker.swift */,
+				3503B99F295EDD2900F37B0B /* ViewRouter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,7 +237,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				358EF739289D114A00B858C3 /* AddFishView.swift in Sources */,
 				357148E728A110F6009B428C /* FishListItemView.swift in Sources */,
 				358EF728289D0A9C00B858C3 /* Persistence.swift in Sources */,
 				355EC3242953578700576A2A /* InsetDetailsView.swift in Sources */,
@@ -232,15 +245,18 @@
 				358EF73B289D127C00B858C3 /* ImagePicker.swift in Sources */,
 				357148E3289E6CB8009B428C /* AddFish.swift in Sources */,
 				358EF72B289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld in Sources */,
-				350CDAF92938FCD00055CFC0 /* MapView.swift in Sources */,
 				357148C5289D1A54009B428C /* FishDetailView.swift in Sources */,
 				358EF71F289D0A9700B858C3 /* Fishing_DiaryApp.swift in Sources */,
 				355EC355295C5F7600576A2A /* LocationManager.swift in Sources */,
 				355EC3282955C66B00576A2A /* DetailFishView.swift in Sources */,
 				357148C7289D1B2A009B428C /* FishHeaderView.swift in Sources */,
+				355EC359295D9C2700576A2A /* MapMainView.swift in Sources */,
 				355EC3262954D5E700576A2A /* HeadingView.swift in Sources */,
+				3503B9A0295EDD2900F37B0B /* ViewRouter.swift in Sources */,
 				35B0BF5228B131B600472E7E /* InsetImageView.swift in Sources */,
 				357148D4289D2304009B428C /* Fish+CoreDataProperties.swift in Sources */,
+				3503B9A5295F017D00F37B0B /* NavigationBarView.swift in Sources */,
+				355EC357295D9AA000576A2A /* MapView.swift in Sources */,
 				357148CC289D208A009B428C /* Constant.swift in Sources */,
 				357148D3289D2304009B428C /* Fish+CoreDataClass.swift in Sources */,
 			);

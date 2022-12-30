@@ -30,7 +30,7 @@ struct FishListItemView: View {
                             .foregroundColor(Color.white)
                             .lineLimit(3)
                        
-                        Text(fish.specie ?? "Error")
+                        Text(fish.timestamp ?? Date() , formatter: itemFormatter)
                         .foregroundColor(Color.white)
                 } //: VSTACK
                     //Centers the text
