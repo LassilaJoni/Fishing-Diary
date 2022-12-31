@@ -35,14 +35,13 @@ struct CustomTabs : View {
     @Binding var index : Int
     
     @State private var showSheet: Bool = false
+
     
     @Environment(\.managedObjectContext) private var viewContext
     
     var body : some View {
-          
-              
-              VStack {
-                 
+        
+        VStack {
                   
                   HStack {
                       Button(action: {
@@ -51,6 +50,7 @@ struct CustomTabs : View {
                           Image(systemName: "homekit")
                               .font(.system(size: 30))
                       }
+                      
                       .foregroundColor(Color.black.opacity(self.index == 0 ? 1 : 0.2))
 
                       Spacer(minLength: 0)
@@ -59,9 +59,16 @@ struct CustomTabs : View {
                           self.index = 1
                           self.showSheet.toggle()
                       }) {
-                          Image(systemName: "plus.circle.fill")
+                          
+                          ZStack {
+                          Image(systemName: "plus")
                               .font(.system(size: 45))
                               .foregroundColor(Color("Color1"))
+                          Image(systemName: "plus.circle.fill")
+                              .font(.system(size: 45))
+                              .foregroundColor(Color("Color-New-1"))
+                          }
+                          
                       }
                       .offset(y: -25)
 
@@ -70,8 +77,10 @@ struct CustomTabs : View {
                       Button(action: {
                           self.index = 2
                       }) {
+                          NavigationLink(destination: MapMainView()) {
                           Image(systemName: "map")
                               .font(.system(size: 30))
+                          }
                       }
                       .foregroundColor(Color.black.opacity(self.index == 2 ? 1 : 0.2))
                   }
@@ -81,7 +90,6 @@ struct CustomTabs : View {
                   .padding(.horizontal, 75)
                   .background(Color.white)
               }
-               // set the frame to the width of the screen and a fixed height
-          
-      }
+            }
+    
   }
