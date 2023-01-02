@@ -45,7 +45,7 @@ extension NSManagedObjectContext {
     }
 }
 
-struct City: Identifiable {
+struct FishAnnotation: Identifiable {
     let id = UUID()
     let name: String
     let coordinate: CLLocationCoordinate2D
@@ -59,13 +59,13 @@ struct Detail: View {
     @State private var isShowingDialog = false
     
     let fish: Fish
-    let annotations: [City]
+    let annotations: [FishAnnotation]
     @State private var region: MKCoordinateRegion
     
     init(fish: Fish) {
            self.fish = fish
            self.annotations = [
-            City(name: fish.title ?? "No data found", coordinate: CLLocationCoordinate2D(latitude: fish.lat, longitude: fish.long)),
+            FishAnnotation(name: fish.title ?? "No data found", coordinate: CLLocationCoordinate2D(latitude: fish.lat, longitude: fish.long)),
            ]
 
            self.region = MKCoordinateRegion(
@@ -76,8 +76,6 @@ struct Detail: View {
     var body: some View {
         
         VStack {
-            //Color("Color-1").edgesIgnoringSafeArea(.all)
-            
             VStack {
                 NavigationLink(destination: InsetImageView(fish: fish)) {
                     Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "kalakuva")!))
@@ -115,6 +113,9 @@ struct Detail: View {
                                 Text(fish.details ?? "No Data")
                                     .font(.title3)
                                     .foregroundColor(Color.white)
+                                
+                                HeadingView(headingImage: "map", headingText: "Location", headingTextColor: "Color4")
+                                
                                 Map(coordinateRegion: $region,
                                                 interactionModes: .all,
                                                 showsUserLocation: true,

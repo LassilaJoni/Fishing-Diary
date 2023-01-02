@@ -15,9 +15,9 @@ struct NavigationBarView: View {
     var body: some View {
         
         
-            
+        
         VStack {
-        CustomTabs(index: self.$index)
+            CustomTabs(index: self.$index)
         }
         .background(Color.black.opacity(0.05).edgesIgnoringSafeArea(.top))
     }
@@ -35,61 +35,73 @@ struct CustomTabs : View {
     @Binding var index : Int
     
     @State private var showSheet: Bool = false
-
+    
+    @State private var showMapSheet: Bool = false
+    
     
     @Environment(\.managedObjectContext) private var viewContext
     
     var body : some View {
         
         VStack {
-                  
-                  HStack {
-                      Button(action: {
-                          self.index = 0
-                      }) {
-                          Image(systemName: "homekit")
-                              .font(.system(size: 30))
-                      }
-                      
-                      .foregroundColor(Color.black.opacity(self.index == 0 ? 1 : 0.2))
-
-                      Spacer(minLength: 0)
-
-                      Button(action: {
-                          self.index = 1
-                          self.showSheet.toggle()
-                      }) {
-                          
-                          ZStack {
-                          Image(systemName: "plus")
-                              .font(.system(size: 45))
-                              .foregroundColor(Color("Color1"))
-                          Image(systemName: "plus.circle.fill")
-                              .font(.system(size: 45))
-                              .foregroundColor(Color("Color-New-1"))
-                          }
-                          
-                      }
-                      .offset(y: -25)
-
-                      Spacer(minLength: 0)
-
-                      Button(action: {
-                          self.index = 2
-                      }) {
-                          NavigationLink(destination: MapMainView()) {
-                          Image(systemName: "map")
-                              .font(.system(size: 30))
-                          }
-                      }
-                      .foregroundColor(Color.black.opacity(self.index == 2 ? 1 : 0.2))
-                  }
-                  .sheet(isPresented: self.$showSheet) {
-                      AddFish().environment(\.managedObjectContext, self.viewContext)
-                  }
-                  .padding(.horizontal, 75)
-                  .background(Color.white)
-              }
+            
+            HStack {
+                Button(action: {
+                    self.index = 0
+                }) {
+                    VStack {
+                   
+                    Image(systemName: "homekit")
+                        .font(.system(size: 25))
+                        Text("Home")
+                    }
+                }
+                
+                .foregroundColor(Color.white.opacity(self.index == 0 ? 1 : 0.2))
+                
+                Spacer(minLength: 0)
+                
+                Button(action: {
+                    self.showSheet.toggle()
+                }) {
+                    
+                    ZStack {
+                        Image(systemName: "plus")
+                            .font(.system(size: 45))
+                            .foregroundColor(Color("Color1"))
+                        Image(systemName: "plus.circle.fill")
+                            .font(.system(size: 45))
+                            .foregroundColor(Color("TabBarBackground"))
+                            .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                    }
+                    
+                }
+                .offset(y: -15)
+                
+                Spacer(minLength: 0)
+                
+                Button(action: {
+                    //self.index = 1
+                    self.showMapSheet.toggle()
+                }) {
+                    VStack {
+                   
+                    Image(systemName: "map")
+                        .font(.system(size: 25))
+                        Text("Map")
+                    }
+                }
+               // .foregroundColor(Color.white.opacity(self.index == 1 ? 1 : 0.2))
             }
+            .sheet(isPresented: self.$showSheet) {
+                AddFish().environment(\.managedObjectContext, self.viewContext)
+            }
+            .sheet(isPresented: self.$showMapSheet) {
+                MapMainView()
+            }
+            .padding(.horizontal, 75)
+            .background(Color("TabBarBackground"))
+        }
+    }
     
-  }
+}

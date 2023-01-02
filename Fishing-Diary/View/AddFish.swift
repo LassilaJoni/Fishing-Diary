@@ -73,6 +73,7 @@ struct Add: View {
     
     @State private var image: Data = .init(count: 0)
     
+    @State private var showImageSourceSheet: Bool = false
     
     @ObservedObject var locationManager = LocationManager.shared
     
@@ -81,12 +82,15 @@ struct Add: View {
     
     @State var tracking:MapUserTrackingMode = .follow
     
+    
+    
     @Environment(\.presentationMode) var presentationMode
     //CORE DATA
     @Environment(\.managedObjectContext) private var moc
     @Environment(\.dismiss) private var dismiss
     
-  
+    @State private var imagePickerSource: UIImagePickerController.SourceType = .photoLibrary
+   
     
     let radius: CGFloat = 100
     var offset: CGFloat {
@@ -129,15 +133,15 @@ struct Add: View {
                                     )
                             }.offset(x: offset, y: offset))
                             .sheet(isPresented: self.$showSheet) {
-                                ImagePicker(show: self.$showSheet, image: self.$image)
+                                ImagePicker(show: self.$showSheet, image: self.$image, sourceType: imagePickerSource)
                             }
                     }
                 } else {
                     
                     Button(action: {
                         withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)){
-                            self.showSheet.toggle()
-                            
+                          //  self.showSheet.toggle()
+                            self.showImageSourceSheet.toggle()
                             
                         }
                         
@@ -151,9 +155,22 @@ struct Add: View {
                         
                     }
                     
-                    .sheet(isPresented: self.$showSheet) {
-                        ImagePicker(show: self.$showSheet, image: self.$image)
-                    }
+                    .actionSheet(isPresented: $showImageSourceSheet) {
+                                ActionSheet(title: Text("Choose Image Source"), message: nil, buttons: [
+                                    .default(Text("Camera")) {
+                                        self.imagePickerSource = .camera
+                                        self.showSheet = true
+                                        
+                                    },
+                                    .default(Text("Photo Library")) {
+                                        self.imagePickerSource = .photoLibrary
+                                        self.showSheet = true
+                                    },
+                                    .cancel()
+                                ])
+                    }.sheet(isPresented: self.$showSheet) {
+                                ImagePicker(show: self.$showSheet, image: self.$image, sourceType: imagePickerSource)
+                            }
                     .background(Color("Color4"))
                     .clipShape(Capsule())
                 }
@@ -187,18 +204,6 @@ struct Add: View {
                         .foregroundColor(.black)
                     
                 }.padding(.vertical, 20)
-//
-//                Divider()
-//
-//                HStack(spacing: 15){
-//
-//                    Image(systemName: "rectangle.and.pencil.and.ellipsis")
-//                        .foregroundColor(.accentColor)
-//
-//                    TextField("Enter specie...", text: self.$specie)
-//                        .foregroundColor(.black)
-//
-//                }.padding(.vertical, 20)
                 
                 Divider()
                 
@@ -213,7 +218,7 @@ struct Add: View {
                 }.padding(.vertical, 20)
                 Divider()
                 Group {
-                    HeadingView(headingImage: "map.fill", headingText: "Location", headingTextColor: "Color1")
+                    HeadingView(headingImage: "map.fill", headingText: "Add location", headingTextColor: "Color1")
                 
                     
                     ZStack {
@@ -246,6 +251,7 @@ struct Add: View {
                                     .foregroundColor(.white)
                                     .padding(.bottom, 10)
                 Text("lat: \(region.center.latitude), long: \(region.center.longitude)")
+                        .foregroundColor(Color.black)
             }
             }
             .ignoresSafeArea(.keyboard)

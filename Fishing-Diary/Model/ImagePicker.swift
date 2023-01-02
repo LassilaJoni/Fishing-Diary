@@ -11,6 +11,7 @@ import Combine
 struct ImagePicker : UIViewControllerRepresentable {
     @Binding var show : Bool
     @Binding var image : Data
+    var sourceType: UIImagePickerController.SourceType
     
     func makeCoordinator() -> ImagePicker.Coordinator {
         
@@ -20,7 +21,7 @@ struct ImagePicker : UIViewControllerRepresentable {
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) ->
     UIImagePickerController {
         let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
+        picker.sourceType = sourceType
         picker.delegate = context.coordinator
         
         return picker

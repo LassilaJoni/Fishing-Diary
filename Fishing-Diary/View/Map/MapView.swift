@@ -14,6 +14,8 @@ struct MapView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
+        mapView.showsUserLocation = true
+        
         return mapView
     }
 
@@ -22,7 +24,7 @@ struct MapView: UIViewRepresentable {
         do {
             let pins = try managedObjectContext.fetch(request)
             if(pins.isEmpty) {
-                print("perse")
+                print("No pins")
             } else {
             for pin in pins {
                 let annotation = MKPointAnnotation()

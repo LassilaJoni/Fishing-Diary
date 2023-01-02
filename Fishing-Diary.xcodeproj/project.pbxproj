@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3503B9A0295EDD2900F37B0B /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503B99F295EDD2900F37B0B /* ViewRouter.swift */; };
 		3503B9A5295F017D00F37B0B /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503B9A4295F017D00F37B0B /* NavigationBarView.swift */; };
 		355EC3242953578700576A2A /* InsetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC3232953578700576A2A /* InsetDetailsView.swift */; };
 		355EC3262954D5E700576A2A /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC3252954D5E700576A2A /* HeadingView.swift */; };
@@ -31,10 +30,11 @@
 		358EF73B289D127C00B858C3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EF73A289D127C00B858C3 /* ImagePicker.swift */; };
 		35B0BF5228B131B600472E7E /* InsetImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B0BF5128B131B500472E7E /* InsetImageView.swift */; };
 		35B0BF5428B1335800472E7E /* PinchZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B0BF5328B1335800472E7E /* PinchZoomView.swift */; };
+		35E30AFE2962D3050081526C /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E30AFD2962D3050081526C /* SettingsCell.swift */; };
+		35E30B002962D3AD0081526C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E30AFF2962D3AD0081526C /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3503B99F295EDD2900F37B0B /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		3503B9A4295F017D00F37B0B /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		355EC3232953578700576A2A /* InsetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetDetailsView.swift; sourceTree = "<group>"; };
 		355EC3252954D5E700576A2A /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
@@ -59,6 +59,8 @@
 		358EF73A289D127C00B858C3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		35B0BF5128B131B500472E7E /* InsetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetImageView.swift; sourceTree = "<group>"; };
 		35B0BF5328B1335800472E7E /* PinchZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchZoomView.swift; sourceTree = "<group>"; };
+		35E30AFD2962D3050081526C /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		35E30AFF2962D3AD0081526C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		357148CA289D207E009B428C /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				35B0BF5328B1335800472E7E /* PinchZoomView.swift */,
 				357148CB289D208A009B428C /* Constant.swift */,
 			);
 			path = Utility;
@@ -139,18 +142,12 @@
 		358EF736289D112600B858C3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				35E30AFC2962D2F90081526C /* Settings */,
+				35ED0E0F2962CFBD00BF9F5E /* Details */,
+				35ED0E0E2962CF5F00BF9F5E /* Map */,
 				3503B9A3295F016700F37B0B /* Navigation */,
-				355EC356295D9AA000576A2A /* MapView.swift */,
-				357148C4289D1A54009B428C /* FishDetailView.swift */,
-				357148C6289D1B2A009B428C /* FishHeaderView.swift */,
 				357148E2289E6CB7009B428C /* AddFish.swift */,
 				357148E628A110F6009B428C /* FishListItemView.swift */,
-				35B0BF5128B131B500472E7E /* InsetImageView.swift */,
-				35B0BF5328B1335800472E7E /* PinchZoomView.swift */,
-				355EC3232953578700576A2A /* InsetDetailsView.swift */,
-				355EC3252954D5E700576A2A /* HeadingView.swift */,
-				355EC3272955C66B00576A2A /* DetailFishView.swift */,
-				355EC358295D9C2700576A2A /* MapMainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -162,9 +159,39 @@
 				358EF729289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld */,
 				358EF727289D0A9C00B858C3 /* Persistence.swift */,
 				358EF73A289D127C00B858C3 /* ImagePicker.swift */,
-				3503B99F295EDD2900F37B0B /* ViewRouter.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		35E30AFC2962D2F90081526C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				35E30AFD2962D3050081526C /* SettingsCell.swift */,
+				35E30AFF2962D3AD0081526C /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		35ED0E0E2962CF5F00BF9F5E /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				355EC356295D9AA000576A2A /* MapView.swift */,
+				355EC358295D9C2700576A2A /* MapMainView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		35ED0E0F2962CFBD00BF9F5E /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				357148C4289D1A54009B428C /* FishDetailView.swift */,
+				357148C6289D1B2A009B428C /* FishHeaderView.swift */,
+				35B0BF5128B131B500472E7E /* InsetImageView.swift */,
+				355EC3232953578700576A2A /* InsetDetailsView.swift */,
+				355EC3252954D5E700576A2A /* HeadingView.swift */,
+				355EC3272955C66B00576A2A /* DetailFishView.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35E30AFE2962D3050081526C /* SettingsCell.swift in Sources */,
 				357148E728A110F6009B428C /* FishListItemView.swift in Sources */,
 				358EF728289D0A9C00B858C3 /* Persistence.swift in Sources */,
 				355EC3242953578700576A2A /* InsetDetailsView.swift in Sources */,
@@ -245,6 +273,7 @@
 				358EF73B289D127C00B858C3 /* ImagePicker.swift in Sources */,
 				357148E3289E6CB8009B428C /* AddFish.swift in Sources */,
 				358EF72B289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld in Sources */,
+				35E30B002962D3AD0081526C /* SettingsView.swift in Sources */,
 				357148C5289D1A54009B428C /* FishDetailView.swift in Sources */,
 				358EF71F289D0A9700B858C3 /* Fishing_DiaryApp.swift in Sources */,
 				355EC355295C5F7600576A2A /* LocationManager.swift in Sources */,
@@ -252,7 +281,6 @@
 				357148C7289D1B2A009B428C /* FishHeaderView.swift in Sources */,
 				355EC359295D9C2700576A2A /* MapMainView.swift in Sources */,
 				355EC3262954D5E700576A2A /* HeadingView.swift in Sources */,
-				3503B9A0295EDD2900F37B0B /* ViewRouter.swift in Sources */,
 				35B0BF5228B131B600472E7E /* InsetImageView.swift in Sources */,
 				357148D4289D2304009B428C /* Fish+CoreDataProperties.swift in Sources */,
 				3503B9A5295F017D00F37B0B /* NavigationBarView.swift in Sources */,
