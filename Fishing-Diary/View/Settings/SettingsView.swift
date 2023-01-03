@@ -42,7 +42,7 @@ struct SettingsView: View {
                         
                     }
                 }
-                // TODO: Tee privacy policy tälle apille
+                
                 Section {
                     Button(action:{
                         if let url = URL(string: "https://www.nordicprograms.com/privacyfishingdiary") {

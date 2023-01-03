@@ -38,7 +38,6 @@ struct CustomTabs : View {
     
     @State private var showMapSheet: Bool = false
     
-    
     @Environment(\.managedObjectContext) private var viewContext
     
     var body : some View {

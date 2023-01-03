@@ -261,6 +261,7 @@ struct Add: View {
             .background(
                     LinearGradient(gradient: Gradient(colors: [Color("Color4")]), startPoint: .leading, endPoint: .bottom)
                 )
+            .frame(width: UIScreen.main.bounds.width - 50)
             .cornerRadius(10)
             .padding(.top, 25)
             
