@@ -25,6 +25,8 @@ struct InsetDetailsView: View {
             Text(fish.weight ?? "Error getting fish weight")
                        .foregroundColor(.white)
                        .padding()
+                       .multilineTextAlignment(.leading)
+                       .fixedSize(horizontal: false, vertical: true)
                    Spacer()
                    Image(systemName: "scalemass.fill")
                        .foregroundColor(Color("Color-1"))

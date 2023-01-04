@@ -13,17 +13,16 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
- 
+
             let newItem = Fish(context: viewContext)
             newItem.timestamp = Date()
             newItem.id = UUID()
-            newItem.title = "Kala mökiltä"
-            newItem.details = "Kala saatu mökiltä. jgidfjgiodjgdiorgjdriogjdiogjdriogdjriogdrjgiodjgiodrjgdiogjdgoirdjgdrgiordjgogirdji"
-            //newItem.specie = "Pike"
-            newItem.weight = "5 kg"
-            newItem.lat = 60.268799
-            newItem.long = 25.070315
-        
+            newItem.title = "Testi"
+            newItem.details = "Testi"
+            newItem.weight = "It was something like 5 kg"
+            newItem.lat = 55.3781
+            newItem.long = 3.4360
+
         do {
             try viewContext.save()
         } catch {

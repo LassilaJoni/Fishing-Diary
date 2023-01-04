@@ -72,7 +72,7 @@ struct Detail: View {
         VStack {
             VStack {
                 NavigationLink(destination: InsetImageView(fish: fish)) {
-                    Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "kalakuva")!))
+                    Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "noimagefound")!))
                         .resizable()
                         .scaledToFill()
                 }
@@ -146,6 +146,7 @@ struct Detail: View {
                                         } catch {
                                             print("Error deleting data")
                                         }
+                                        
                                     }
                                     Button("Cancel", role: .cancel) {
                                         

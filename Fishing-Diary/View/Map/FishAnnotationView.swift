@@ -18,6 +18,7 @@ struct FishAnnotationView: View {
                 .padding(5)
                 .background(Color(.white))
                 .cornerRadius(10)
+                .frame(width: .infinity)
             
             Image(systemName: "mappin.circle.fill")
                 .font(.title)
@@ -26,13 +27,16 @@ struct FishAnnotationView: View {
             Image(systemName: "arrowtriangle.down.fill")
                 .font(.caption)
                 .foregroundColor(.red)
-                .offset(x: 0, y: 5)
+                .offset(x: 0, y: -4)
         }
     }
 }
 
 struct FishAnnotationView_Previews: PreviewProvider {
     static var previews: some View {
-        FishAnnotationView(title: "Testi")
+        ZStack {
+            Color.blue.ignoresSafeArea()
+            FishAnnotationView(title: "Testi")
+        }
     }
 }

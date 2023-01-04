@@ -15,7 +15,7 @@ struct InsetImageView: View {
     let fish: Fish
     
     var body: some View {
-        Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "kalakuva")!))
+        Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "noimagefound")!))
             .resizable()
             .aspectRatio(contentMode: .fit)
             .pinchToZoom()

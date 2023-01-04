@@ -18,7 +18,7 @@ struct FishListItemView: View {
            
             HStack {
                 VStack {
-                Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "kalakuva"))!)
+                Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "noimagefound"))!)
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: 100)
