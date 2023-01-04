@@ -37,7 +37,7 @@ struct MapMainView: View {
             VStack {
             // Add the label on top of the map view
             if(MapMainView.shared.locationManager.location == nil) {
-                Text("Location not availalble")
+                Text("Location not available")
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.black)

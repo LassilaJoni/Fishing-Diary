@@ -14,13 +14,18 @@ struct AddFish: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
+        GeometryReader { geometry in
+        
         NavigationView {
                     ZStack {
                         LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all)
+                        
                         ScrollView(.vertical, showsIndicators: false) {
                             
                             Home()
+
                         }
+                        
                     }
                     .toolbar {
                         ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -38,8 +43,10 @@ struct AddFish: View {
                             .accessibilityLabel(Text("Close"))
                         }
                     }
+                   
                 } //: NavigationView
-  
+        .frame(width: geometry.size.width, height: geometry.size.height)
+        }
             } //:BODY
             private func dismissSheet() {
                 presentationMode.wrappedValue.dismiss()
@@ -67,6 +74,7 @@ struct Home : View {
             Add()
             
         }
+        .frame(width: 425)
         
         
         
@@ -120,8 +128,7 @@ struct Add: View {
     }
     
     var body : some View{
-        
-        
+
         VStack{
             HStack{
                 
@@ -277,7 +284,7 @@ struct Add: View {
             .background(
                 LinearGradient(gradient: Gradient(colors: [Color("Color4")]), startPoint: .leading, endPoint: .bottom)
             )
-            .frame(width: UIScreen.main.bounds.width - 10)
+           // .frame(width: UIScreen.main.bounds.width - 20)
             .cornerRadius(10)
             .padding(.top, 25)
             
@@ -288,13 +295,11 @@ struct Add: View {
                 save.imageData = image
                 save.title = self.title
                 save.details = self.details
-                // save.specie = self.specie
                 save.weight = self.weight
                 save.timestamp = Date()
                 save.lat = region.center.latitude
                 save.long = region.center.longitude
                 save.id = UUID()
-                // TODO: ERROR HANDLING
                 
                 do {
                     try self.moc.save()
@@ -341,7 +346,7 @@ struct Add: View {
         } //: VSTACK
         
     }
-    
+       
     private func dismissSheet() {
         presentationMode.wrappedValue.dismiss()
     }
