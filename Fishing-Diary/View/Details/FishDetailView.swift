@@ -45,12 +45,6 @@ extension NSManagedObjectContext {
     }
 }
 
-struct FishAnnotation: Identifiable {
-    let id = UUID()
-    let name: String
-    let coordinate: CLLocationCoordinate2D
-}
-
 struct Detail: View {
     
     
@@ -65,7 +59,7 @@ struct Detail: View {
     init(fish: Fish) {
            self.fish = fish
            self.annotations = [
-            FishAnnotation(name: fish.title ?? "No data found", coordinate: CLLocationCoordinate2D(latitude: fish.lat, longitude: fish.long)),
+            FishAnnotation(fish: fish),
            ]
 
            self.region = MKCoordinateRegion(

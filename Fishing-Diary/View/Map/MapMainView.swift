@@ -1,130 +1,3 @@
-////
-////  MapMainView.swift
-////  Fishing-Diary
-////
-////  Created by Joni Lassila on 29.12.2022.
-////
-//
-//import SwiftUI
-//import MapKit
-//import CoreData
-//import CoreLocationUI
-//import StoreKit
-//
-//
-//struct MapMainView: View {
-//
-//    struct FishAnnotation: Identifiable {
-//        let id = UUID()
-//        let name: String
-//        let coordinate: CLLocationCoordinate2D
-//    }
-//
-//        @Environment(\.managedObjectContext) private var moc
-//        @ObservedObject var locationManager = LocationManager.shared
-//
-//        @State private var region = MKCoordinateRegion(center: LocationManager.currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-//    let mapView = MKMapView()
-//        @Environment(\.presentationMode) var presentationMode
-//
-//    var body: some View {
-//
-//        NavigationView {
-//
-//           //MapView()
-//            Map(coordinateRegion: $region,
-//                            interactionModes: .all,
-//                            showsUserLocation: true,
-//                            annotationItems: annotations) {
-//                            MapPin(coordinate: $0.coordinate)
-//            }
-//               // .ignoresSafeArea(.all)
-//                .toolbar {
-//                    ToolbarItemGroup(placement: .navigationBarLeading) {
-//                        Button(action: dismiss, label: {
-//                            Circle()
-//                                .fill(Color(.black))
-//                                .frame(width: 40, height: 30) // You can make this whatever size, but keep UX in mind.
-//                                .overlay(
-//                                    Image(systemName: "xmark")
-//                                        .font(.system(size: 15, weight: .bold, design: .rounded)) // This should be less than the frame of the circle
-//                                        .foregroundColor(.white)
-//                                )
-//                        })
-//                        .buttonStyle(PlainButtonStyle())
-//                        .accessibilityLabel(Text("Close"))
-//                    }
-//                }
-//
-//        }
-//
-//
-//    }
-//
-//    private mutating func updateMapView(_ uiView: MKMapView) {
-////        guard moc.persistentStoreCoordinator != nil else {
-////            print("erroria pukkaa")
-////            return
-////        }
-//
-//        let request: NSFetchRequest<Fish> = Fish.fetchRequest()
-//        do {
-//            let pins = try moc.fetch(request)
-//            // create the annotations array using the fishes array
-////            self.annotations = pins.map { pin in
-//            for pin in pins {
-//                let annotation = MKPointAnnotation()
-//                annotation.title = pin.title
-//                                annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
-//                                uiView.addAnnotation(annotation)
-////                FishAnnotation(name: pin.title ?? "No data found", coordinate: CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long))
-//            }
-//        } catch {
-//            print("Error fetching fish entities: \(error)")
-//        }
-//    }
-////    func updateUIView(_ uiView: MKMapView, context: Context) {
-////        let request: NSFetchRequest<Fish> = Fish.fetchRequest()
-////        do {
-////            let pins = try managedObjectContext.fetch(request)
-////            if(pins.isEmpty) {
-////                print("No pins")
-////            } else {
-////            for pin in pins {
-////                let annotation = MKPointAnnotation()
-////                annotation.title = pin.title
-////                annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
-////                uiView.addAnnotation(annotation)
-////            }
-////            }
-////        } catch {
-////            print(error)
-////        }
-////    }
-//
-//    private func dismiss() {
-//        presentationMode.wrappedValue.dismiss()
-//    }
-//}
-//struct MapMainView_Previews: PreviewProvider {
-//
-//    @State static var mapView: MKMapView = MKMapView()
-//
-//    static var previews: some View {
-////        let context = PersistenceController.preview.container.viewContext
-////        let fish = context.firstFish
-//        MapMainView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//    }
-//}
-//
-
-//
-//  MapMainView.swift
-//  Fishing-Diary
-//
-//  Created by Joni Lassila on 29.12.2022.
-//
-
 import SwiftUI
 import MapKit
 import CoreData
@@ -134,53 +7,58 @@ import StoreKit
 
 struct MapMainView: View {
     
-    struct FishAnnotation: Identifiable {
-        let id = UUID()
-        let name: String
-        let coordinate: CLLocationCoordinate2D
-    }
     
-        @Environment(\.managedObjectContext) private var moc
-        @ObservedObject var locationManager = LocationManager.shared
-        
-        @State private var region = MKCoordinateRegion(center: LocationManager.currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-    let mapView = MKMapView()
-        @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) private var moc
+    @ObservedObject var locationManager = LocationManager.shared
+    
+    @State private var region = MKCoordinateRegion(center: LocationManager.currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+    
+    @State private var selectedFish: Fish?
+    
     
     var body: some View {
         
-        NavigationView {
+        ZStack(alignment: .bottom) {
             Map(coordinateRegion: $region,
-                            interactionModes: .all,
-                            showsUserLocation: true,
-                            annotationItems: annotations) {
-                            MapPin(coordinate: $0.coordinate)
+                interactionModes: .all,
+                showsUserLocation: true,
+                annotationItems: annotations) { annotation in
+                MapAnnotation(coordinate: annotation.coordinate) {
+                    FishAnnotationView(title: annotation.title)
+                        .scaleEffect(selectedFish == annotation.fish ? 1 : 0.7)
+                        .shadow(radius: 10)
+                        .onTapGesture {
+                            selectedFish = annotation.fish
+                        }
+                }
+                
+            
+                
             }
-               // .ignoresSafeArea(.all)
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                        Button(action: dismiss, label: {
-                            Circle()
-                                .fill(Color(.black))
-                                .frame(width: 40, height: 30) // You can make this whatever size, but keep UX in mind.
-                                .overlay(
-                                    Image(systemName: "xmark")
-                                        .font(.system(size: 15, weight: .bold, design: .rounded)) // This should be less than the frame of the circle
-                                        .foregroundColor(.white)
-                                )
-                        })
-                        .buttonStyle(PlainButtonStyle())
-                        .accessibilityLabel(Text("Close"))
+                .onAppear(perform: updateMapView)
+            .ignoresSafeArea()
+            Spacer()
+            if let selectedFish = selectedFish {
+                VStack {
+                    withAnimation(.easeInOut(duration: 4)) {
+                    LocationPreviewView(fish: selectedFish)
+                        .shadow(color: Color.black.opacity(0.3), radius: 20)
+                        .padding()
+                        .transition(.moveAndFade)
+                        .onTapGesture {
+                            self.selectedFish = nil
+                        }
                     }
                 }
-
+               
+            }
+            
+            
         }
-       
-   
     }
     var annotations: [FishAnnotation] {
         let fish = fetchFish()
-        return fish.map { FishAnnotation(name: $0.title ?? "No data found", coordinate: CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long)) }
+        return fish.map { FishAnnotation(fish: $0) }
     }
     
     func fetchFish() -> [Fish] {
@@ -193,19 +71,27 @@ struct MapMainView: View {
         }
     }
     
-    private func dismiss() {
-        presentationMode.wrappedValue.dismiss()
+    private func updateMapView() {
+            locationManager.requestLocation()
+        region = MKCoordinateRegion(center: LocationManager.currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        }
+    
     }
-}
+ 
 struct MapMainView_Previews: PreviewProvider {
     
     @State static var mapView: MKMapView = MKMapView()
     
     static var previews: some View {
-//        let context = PersistenceController.preview.container.viewContext
-//        let fish = context.firstFish
         MapMainView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
 
-
+extension AnyTransition {
+    static var moveAndFade: AnyTransition {
+        .asymmetric(
+            insertion: .move(edge: .trailing).combined(with: .opacity),
+            removal: .scale.combined(with: .opacity)
+        )
+    }
+}

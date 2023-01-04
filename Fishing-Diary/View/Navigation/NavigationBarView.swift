@@ -79,25 +79,22 @@ struct CustomTabs : View {
                 
                 Spacer(minLength: 0)
                 
-                Button(action: {
-                    //self.index = 1
-                    self.showMapSheet.toggle()
-                }) {
-                    VStack {
-                   
-                    Image(systemName: "map")
-                        .font(.system(size: 25))
-                        Text("Map")
-                    }
+                NavigationLink(destination: MapMainView()) {
+             
+                        VStack {
+                            Image(systemName: "map")
+                                .font(.system(size: 25))
+                            Text("Map")
+                        }
                 }
                // .foregroundColor(Color.white.opacity(self.index == 1 ? 1 : 0.2))
             }
             .sheet(isPresented: self.$showSheet) {
                 AddFish().environment(\.managedObjectContext, self.viewContext)
             }
-            .sheet(isPresented: self.$showMapSheet) {
-                MapMainView()
-            }
+//            .sheet(isPresented: self.$showMapSheet) {
+//                MapMainView()
+//            }
             .padding(.horizontal, 75)
             .background(Color("TabBarBackground"))
         }
