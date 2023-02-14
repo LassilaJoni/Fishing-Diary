@@ -17,11 +17,11 @@ struct FishDetailView: View {
     var body: some View {
         
 
-        ScrollView(.vertical) {
+        
             Detail(fish: fish)
-        }
+        
                 
-        .edgesIgnoringSafeArea(.all)
+        
             
 
     }
@@ -69,114 +69,123 @@ struct Detail: View {
     
     var body: some View {
         
-        VStack {
-            VStack {
-                NavigationLink(destination: InsetImageView(fish: fish)) {
-                    Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "noimagefound")!))
-                        .resizable()
-                        .scaledToFill()
-                }
-                ZStack(alignment: .topTrailing) {
-                    VStack {
-                        HStack {
-                            Text(fish.title ?? "No Data")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.white)
+        GeometryReader { geo in
+            ScrollView(.vertical
+            , showsIndicators: false) {
+                VStack {
+                    NavigationLink(destination: InsetImageView(fish: fish)) {
+                        
                             
-                            Spacer()
-                        }.padding(.leading, 10) //:HSTACK
-                            .padding(.top, 10)
-                        HStack {
-                            VStack(alignment: .trailing, spacing: 15) {
-                                Text(fish.timestamp ?? Date() , formatter: itemFormatter)
-                                    .font(.body)
+                            Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "noimagefound")!))
+                                .resizable()
+                            .scaledToFill()
+                        
+                        
+                    }
+                    ZStack(alignment: .topTrailing) {
+                        VStack {
+                            HStack {
+                                Text(fish.title ?? "No Data")
+                                    .font(.title)
                                     .fontWeight(.bold)
-                                 .foregroundColor(.gray)
-                            } //:VSTACK
-                            .padding(.leading, 10) //:HSTACK
-                            Spacer()
-                        } //:HSTACK
-               
-                            InsetDetailsView(fish: fish)
-                 
-                        HStack {
-                            
-                            VStack(alignment: .center, spacing: 25) {
-                                HeadingView(headingImage: "note.text", headingText: "Notes", headingTextColor: "Color4")
-                                Text(fish.details ?? "No Data")
-                                    .font(.title3)
                                     .foregroundColor(Color.white)
                                 
-                                HeadingView(headingImage: "map", headingText: "Location", headingTextColor: "Color4")
+                                Spacer()
+                            }.padding(.leading, 10) //:HSTACK
+                                .padding(.top, 10)
+                            HStack {
+                                VStack(alignment: .trailing, spacing: 15) {
+                                    Text(fish.timestamp ?? Date() , formatter: itemFormatter)
+                                        .font(.body)
+                                        .fontWeight(.bold)
+                                     .foregroundColor(.gray)
+                                } //:VSTACK
+                                .padding(.leading, 10) //:HSTACK
+                                Spacer()
+                            } //:HSTACK
+                   
+                                InsetDetailsView(fish: fish)
+                     
+                            HStack {
                                 
-                                Map(coordinateRegion: $region,
-                                                interactionModes: .all,
-                                                showsUserLocation: true,
-                                                annotationItems: annotations) {
-                                                MapPin(coordinate: $0.coordinate)
-                                }
-                                    .frame(width: 350, height: 250)
+                                VStack(alignment: .center, spacing: 25) {
+                                    HeadingView(headingImage: "note.text", headingText: "Notes", headingTextColor: "Color4")
+                                    Text(fish.details ?? "No Data")
+                                        .font(.title3)
+                                        .foregroundColor(Color.white)
+                                        .frame(maxWidth: geo.size.width - 20)
+                                        .fixedSize(horizontal: false, vertical: true)
                                     
-                            }
-                            
-                            
-                            
-                            
-                        }
-                        
-                        
-                        
-                        
-         
-                        HStack {
-                            VStack(alignment: .trailing, spacing: 25) {
-                                Button("Delete", role: .destructive) {
-                                    isShowingDialog = true
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .controlSize(.large)
-                                .confirmationDialog("Are you sure to delete the data, this action can't be reversed?", isPresented: $isShowingDialog, titleVisibility: .visible) {
+                                    HeadingView(headingImage: "map", headingText: "Location", headingTextColor: "Color4")
                                     
-                                    Button("Confirm", role: .destructive) {
+                                    Map(coordinateRegion: $region,
+                                                    interactionModes: .all,
+                                                    showsUserLocation: true,
+                                                    annotationItems: annotations) {
+                                                    MapPin(coordinate: $0.coordinate)
+                                    }
+                                                    .frame(width: geo.size.width - 20, height: 350)
+                                        .cornerRadius(20)
                                         
-                                        do {
-                                            moc.delete(self.fish)
-                                            try moc.save()
-                                        } catch {
-                                            print("Error deleting data")
+                                }
+                                
+                                
+                            }
+                
+             
+                            HStack {
+                                VStack(alignment: .trailing, spacing: 15) {
+                                    Button("Delete", role: .destructive) {
+                                        isShowingDialog = true
+                                    }
+                                    .buttonStyle(.borderedProminent)
+                                    .controlSize(.large)
+                                    .confirmationDialog("Are you sure to delete the data, this action can't be reversed?", isPresented: $isShowingDialog, titleVisibility: .visible) {
+                                        
+                                        Button("Confirm", role: .destructive) {
+                                            
+                                            do {
+                                                moc.delete(self.fish)
+                                                try moc.save()
+                                            } catch {
+                                                print("Error deleting data")
+                                            }
+                                            
+                                        }
+                                        Button("Cancel", role: .cancel) {
+                                            
                                         }
                                         
                                     }
-                                    Button("Cancel", role: .cancel) {
-                                        
-                                    }
-                                    
                                 }
                             }
-                        }
+                            
+                            
+                            
+                        } //: VSTACK
+                        .padding(.leading, 10)
+                        .padding(.trailing, 10)
                         
-                        
-                    } //: VSTACK
-                    .padding(.leading, 10)
-                    .padding(.trailing, 10)
+                        //.background(CustomShape().fill(Color("Color-List-Outside-1")))
+                        .background (
+                            LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all))
+                        .clipShape(Corners()
+                        )
+                    } //: ZSTACK
                     
-                    //.background(CustomShape().fill(Color("Color-List-Outside-1")))
-                    .background (
-                        LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all))
-                    .clipShape(Corners()
-                    )
-                } //: ZSTACK
-                
-                .zIndex(40)
-                .offset(y: -40)
-                
-                //Spacer()
+                    .zIndex(40)
+                    .offset(y: -40)
+                    
+                    //Spacer()
+                    
+                }
                 
             }
             
-        } //: ZSTACK
-        .edgesIgnoringSafeArea(.all)
+             //: ZSTACK
+            
+            .edgesIgnoringSafeArea(.all)
+        }
         
     }
 }
@@ -203,6 +212,30 @@ struct Corners : Shape {
         
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: [.topLeft,.topRight], cornerRadii: CGSize(width: 35, height: 305))
         return Path(path.cgPath)
+    }
+}
+
+struct StickyHeader<Content: View>: View {
+
+    var minHeight: CGFloat
+    var content: Content
+    
+    init(minHeight: CGFloat = 500, @ViewBuilder content: () -> Content) {
+        self.minHeight = minHeight
+        self.content = content()
+    }
+    
+    var body: some View {
+        GeometryReader { geo in
+            if(geo.frame(in: .global).minY <= 0) {
+                content
+                    .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+            } else {
+                content
+                    .offset(y: -geo.frame(in: .global).minY)
+                    .frame(width: geo.size.width, height: geo.size.height + geo.frame(in: .global).minY)
+            }
+        }.frame(minHeight: minHeight)
     }
 }
 

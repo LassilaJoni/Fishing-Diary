@@ -18,15 +18,20 @@ struct NavigationBarView: View {
         
         VStack {
             CustomTabs(index: self.$index)
+               
         }
-        .background(Color.black.opacity(0.05).edgesIgnoringSafeArea(.top))
+
+        
     }
+    
 }
 
 struct NavigationBarView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationBarView()
+        
     }
+        
 }
 
 
@@ -50,7 +55,7 @@ struct CustomTabs : View {
                 }) {
                     VStack {
                    
-                    Image(systemName: "homekit")
+                    Image(systemName: "house")
                         .font(.system(size: 25))
                         Text("Home")
                     }
@@ -67,17 +72,20 @@ struct CustomTabs : View {
                     ZStack {
                         Image(systemName: "plus")
                             .font(.system(size: 45))
-                            .foregroundColor(Color("Color1"))
+                            .foregroundColor(Color.white)
                         Image(systemName: "plus.circle.fill")
                             .font(.system(size: 45))
-                            .foregroundColor(Color("TabBarBackground"))
-                            .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                            .foregroundColor(Color("Color-1"))
+                            .shadow(color: .white, radius: 2, x: 0, y: 2)
+                        
                     }
                     
+                    .offset(y: -5)
                 }
-                .offset(y: -15)
                 
                 Spacer(minLength: 0)
+                
+                
                 
                 NavigationLink(destination: MapMainView()) {
              
@@ -87,17 +95,25 @@ struct CustomTabs : View {
                             Text("Map")
                         }
                 }
-               // .foregroundColor(Color.white.opacity(self.index == 1 ? 1 : 0.2))
+               .foregroundColor(Color.white.opacity(self.index == 1 ? 1 : 0.2))
             }
-            .sheet(isPresented: self.$showSheet) {
+            .fullScreenCover(isPresented: self.$showSheet) {
                 AddFish().environment(\.managedObjectContext, self.viewContext)
             }
-//            .sheet(isPresented: self.$showMapSheet) {
-//                MapMainView()
-//            }
-            .padding(.horizontal, 75)
-            .background(Color("TabBarBackground"))
+            .padding(.horizontal, 50)
+            .padding(.vertical, 5)
+            .frame(width: 350)
+            
         }
+
+        .background(Color("Color-1"))
+        .clipShape(Capsule())
+   
+        
     }
-    
+        
+       
+        
+        
+        
 }

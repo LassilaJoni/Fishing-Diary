@@ -14,15 +14,16 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
 
+        for i in 0...10 {
             let newItem = Fish(context: viewContext)
             newItem.timestamp = Date()
             newItem.id = UUID()
-            newItem.title = "Testi"
-            newItem.details = "Testi"
+            newItem.title = "Lohi"
+            newItem.details = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique arcu vitae nulla aliquam, ut sodales dolor dignissim. Quisque aliquam purus vitae vulputate scelerisque."
             newItem.weight = "It was something like 5 kg"
             newItem.lat = 55.3781
             newItem.long = 3.4360
-
+        }
         do {
             try viewContext.save()
         } catch {

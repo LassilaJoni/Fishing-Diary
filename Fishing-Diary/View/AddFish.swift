@@ -20,11 +20,11 @@ struct AddFish: View {
                     ZStack {
                         LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all)
                         
-                        ScrollView(.vertical, showsIndicators: false) {
+                        
                             
                             Home()
 
-                        }
+                        
                         
                     }
                     .toolbar {
@@ -68,13 +68,17 @@ struct Home : View {
     @Environment(\.presentationMode) var presentationMode
     var body : some View {
         
-        
-        VStack(alignment: .center) {
-            
-            Add()
-            
+        GeometryReader { geometry in
+            ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .center) {
+                
+                Add()
+            }
+            .frame(width: geometry.size.width)
         }
-        .frame(width: 425)
+        }
+       
+        
         
         
         
@@ -144,7 +148,10 @@ struct Add: View {
                                 height: radius * 2)
                             .clipShape(Circle())
                             .overlay(
-                                Button(action: { self.showSheet.toggle()}) {
+                                Button(action: {
+                                    //Might fix the bug when user reselects an image it doesn't close the sheet when saving the fish
+                                    //self.image.count = 0
+                                    self.showSheet.toggle()}) {
                                     Image(systemName: "camera.fill")
                                         .foregroundColor(.black)
                                         .padding(8)
@@ -155,9 +162,10 @@ struct Add: View {
                                                 .stroke(Color.white, lineWidth: 2)
                                         )
                                 }.offset(x: offset, y: offset))
-                            .sheet(isPresented: self.$showSheet) {
+                            .fullScreenCover(isPresented: self.$showSheet) {
                                 ImagePicker(show: self.$showSheet, image: self.$image, sourceType: imagePickerSource)
                             }
+                            
                     }
                 } else {
                     
@@ -191,7 +199,7 @@ struct Add: View {
                             },
                             .cancel()
                         ])
-                    }.sheet(isPresented: self.$showSheet) {
+                    } .fullScreenCover(isPresented: self.$showSheet) {
                         ImagePicker(show: self.$showSheet, image: self.$image, sourceType: imagePickerSource)
                     }
                     .background(Color("Color4"))
@@ -252,6 +260,7 @@ struct Add: View {
                             userTrackingMode: $tracking)
                         .onAppear(perform: updateMapView)
                         .frame(width: UIScreen.main.bounds.width - 40, height: 400)
+                        .cornerRadius(20)
                         Cross().stroke(Color.red)
                             .frame(width: 50, height: 50)
                         VStack {
