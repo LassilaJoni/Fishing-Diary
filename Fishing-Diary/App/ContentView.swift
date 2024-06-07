@@ -11,7 +11,7 @@ import MapKit
 import UIKit
 
 struct ContentView: View {
-    @State private var selectedIndex = 0
+    @State private var selectedTab: Tabs = .home
     
     init() {
         let navBarAppearance = UINavigationBarAppearance()
@@ -42,7 +42,7 @@ struct ContentView: View {
     @State private var image: Data = .init(count: 0)
     
     var body: some View {
-        GeometryReader { geometry in
+        GeometryReader { geo in
             NavigationView {
                 LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4"),Color("Color-List-Outside-5")]), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.all)
                     .overlay(
@@ -76,7 +76,8 @@ struct ContentView: View {
                 
                     .toolbar {
                         ToolbarItem(placement: .bottomBar) {
-                       NavigationBarView()
+                       //NavigationBarView()
+                           BottomNavigationBarView(selectedTab: $selectedTab)
                                 
                     }
                         ToolbarItemGroup(placement: .navigationBarLeading) {

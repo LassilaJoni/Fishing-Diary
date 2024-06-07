@@ -11,47 +11,25 @@ import MapKit
 import CoreLocationUI
 
 struct AddFish: View {
-    @Environment(\.presentationMode) var presentationMode
+    //@Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        GeometryReader { geometry in
-        
-        NavigationView {
+            
+                GeometryReader { geometry in
                     ZStack {
-                        LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all)
+                        LinearGradient(gradient: .init(colors: [Color("Color-dark-1"), Color("Color-dark-3")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all)
                         
-                        
-                            
-                            Home()
-
-                        
-                        
+                        Home(dismissSheet: dismissSheet)
                     }
-                    .toolbar {
-                        ToolbarItemGroup(placement: .navigationBarLeading) {
-                            Button(action: dismissSheet, label: {
-                                Circle()
-                                    .fill(Color(.secondarySystemBackground))
-                                    .frame(width: 40, height: 30) // You can make this whatever size, but keep UX in mind.
-                                    .overlay(
-                                        Image(systemName: "xmark")
-                                            .font(.system(size: 15, weight: .bold, design: .rounded)) // This should be less than the frame of the circle
-                                            .foregroundColor(.secondary)
-                                    )
-                            })
-                            .buttonStyle(PlainButtonStyle())
-                            .accessibilityLabel(Text("Close"))
-                        }
-                    }
-                   
-                } //: NavigationView
-        .frame(width: geometry.size.width, height: geometry.size.height)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                }
+            
         }
-            } //:BODY
-            private func dismissSheet() {
-                presentationMode.wrappedValue.dismiss()
-            }
-        }
+    public func dismissSheet() {
+        presentationMode.wrappedValue.dismiss()
+    }
+    }
 
 struct AddFish_Previews: PreviewProvider {
     static var previews: some View {
@@ -64,7 +42,7 @@ struct Home : View {
     
     
     @State var image: Data = .init(count: 0)
-    
+    var dismissSheet: () -> Void
     @Environment(\.presentationMode) var presentationMode
     var body : some View {
         
@@ -72,7 +50,7 @@ struct Home : View {
             ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .center) {
                 
-                Add()
+                Add(dismissSheet: dismissSheet)
             }
             .frame(width: geometry.size.width)
         }
@@ -86,9 +64,6 @@ struct Home : View {
         
         
         
-    }
-    private func dismissSheet() {
-        presentationMode.wrappedValue.dismiss()
     }
 }
 
@@ -110,12 +85,14 @@ struct Add: View {
     
     @State var tracking:MapUserTrackingMode = .follow
     
-    
-    
-    @Environment(\.presentationMode) var presentationMode
+    var dismissSheet: () -> Void
+    @State private var navigateToMainPage: Bool = false
+    //@Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) private var dismiss
     //CORE DATA
     @Environment(\.managedObjectContext) private var moc
-    @Environment(\.dismiss) private var dismiss
+    //@Environment(\.dismiss) private var dismiss
     
     @State private var imagePickerSource: UIImagePickerController.SourceType = .photoLibrary
     
@@ -179,7 +156,7 @@ struct Add: View {
                     }) {
                         
                         Text("Add image")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("Color-dark-1"))
                             .fontWeight(.bold)
                             .padding(.vertical, 10)
                             .frame(width: (UIScreen.main.bounds.width - 50) / 2)
@@ -202,7 +179,7 @@ struct Add: View {
                     } .fullScreenCover(isPresented: self.$showSheet) {
                         ImagePicker(show: self.$showSheet, image: self.$image, sourceType: imagePickerSource)
                     }
-                    .background(Color("Color4"))
+                    .background(Color("Color-dark-2"))
                     .clipShape(Capsule())
                 }
                 
@@ -215,12 +192,11 @@ struct Add: View {
                 HStack(spacing: 15){
                     
                     Image(systemName: "rectangle.and.pencil.and.ellipsis")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(Color("Color-dark-2"))
                     
-                    TextField("Enter catch name...", text: self.$title)
-                        .preferredColorScheme(.light)
+                    TextField("", text: self.$title, prompt: Text("Enter catch name...")
+                        .foregroundStyle(.gray))
                         .foregroundColor(.black)
-                    
                 }.padding(.vertical, 20)
                 
                 
@@ -229,10 +205,12 @@ struct Add: View {
                 HStack(spacing: 15){
                     
                     Image(systemName: "note.text")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(Color("Color-dark-2"))
                     
-                    TextField("Enter notes about catch...", text: self.$details)
+                    TextField("", text: self.$details, prompt: Text("Enter notes about catch...")
+                        .foregroundStyle(.gray))
                         .foregroundColor(.black)
+                        
                     
                 }.padding(.vertical, 20)
                 
@@ -241,15 +219,16 @@ struct Add: View {
                 HStack(spacing: 15){
                     
                     Image(systemName: "scalemass.fill")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(Color("Color-dark-2"))
                     
-                    TextField("E.g 7 kg or 15 lb", text: self.$weight)
+                    TextField("", text: self.$weight, prompt: Text("E.g 7 kg or 15 lb")
+                        .foregroundStyle(.gray))
                         .foregroundColor(.black)
                     
                 }.padding(.vertical, 20)
                 Divider()
                 Group {
-                    HeadingView(headingImage: "map.fill", headingText: "Add location", headingTextColor: "Color1")
+                    HeadingView(headingImage: "map.fill", headingText: "Add location", headingTextColor: "Color-dark-1")
                     
                     
                     ZStack {
@@ -298,29 +277,26 @@ struct Add: View {
             .padding(.top, 25)
             
             
-            Button(action: {
-                let save = Fish(context: self.moc)
-                
-                save.imageData = image
-                save.title = self.title
-                save.details = self.details
-                save.weight = self.weight
-                save.timestamp = Date()
-                save.lat = region.center.latitude
-                save.long = region.center.longitude
-                save.id = UUID()
-                
-                do {
-                    try self.moc.save()
-                    //self.title = ""
-                    //self.details = ""
-                }catch {
-                    print("Error in saving data")
-                }
-                
-                
-                dismiss()
-            }) {
+                Button(action: {
+                    let save = Fish(context: self.moc)
+                    
+                    save.imageData = image
+                    save.title = self.title
+                    save.details = self.details
+                    save.weight = self.weight
+                    save.timestamp = Date()
+                    save.lat = region.center.latitude
+                    save.long = region.center.longitude
+                    save.id = UUID()
+                    
+                    do {
+                        try self.moc.save()
+                        dismissSheet()
+                    }catch {
+                        print("Error in saving data")
+                    }
+                    
+                }) {
                 if self.title.isEmpty || self.details.isEmpty || self.image.isEmpty {
                     VStack {
                         Text("SAVE")
@@ -341,12 +317,13 @@ struct Add: View {
                         .fontWeight(.bold)
                         .padding(.vertical)
                         .frame(width: UIScreen.main.bounds.width - 100)
+                        
                 }
             }
-            .disabled(self.image.isEmpty || self.title.isEmpty || self.details.isEmpty || self.weight.isEmpty)
-            .background((self.title.count > 0 && self.details.count > 0 && self.image.count > 0) ? LinearGradient(gradient: .init(colors: [Color("Color1"),Color("Color2"),Color("Color1")]), startPoint: .leading, endPoint: .trailing):
+                .disabled(self.image.isEmpty || self.title.isEmpty || self.details.isEmpty)
+            .background((self.title.count > 0 && self.details.count > 0 && self.image.count > 0) ? LinearGradient(gradient: .init(colors: [Color("Color-dark-2"),Color("Color-dark-2")]), startPoint: .leading, endPoint: .trailing):
                             //If empty
-                        LinearGradient(gradient: .init(colors: [Color(.gray)]), startPoint: .leading, endPoint: .trailing))
+                        LinearGradient(gradient: .init(colors: [Color("Color-dark-1"),Color("Color-dark-3")]), startPoint: .leading, endPoint: .trailing))
             .cornerRadius(8)
             .offset(y: -40)
             .padding(.bottom, -40)
@@ -354,10 +331,6 @@ struct Add: View {
             
         } //: VSTACK
         
-    }
-       
-    private func dismissSheet() {
-        presentationMode.wrappedValue.dismiss()
     }
     
     

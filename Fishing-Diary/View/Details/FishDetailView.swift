@@ -109,14 +109,14 @@ struct Detail: View {
                             HStack {
                                 
                                 VStack(alignment: .center, spacing: 25) {
-                                    HeadingView(headingImage: "note.text", headingText: "Notes", headingTextColor: "Color4")
+                                    HeadingView(headingImage: "note.text", headingText: "Notes", headingTextColor: "Color-dark-4")
                                     Text(fish.details ?? "No Data")
                                         .font(.title3)
                                         .foregroundColor(Color.white)
                                         .frame(maxWidth: geo.size.width - 20)
                                         .fixedSize(horizontal: false, vertical: true)
                                     
-                                    HeadingView(headingImage: "map", headingText: "Location", headingTextColor: "Color4")
+                                    HeadingView(headingImage: "map", headingText: "Location", headingTextColor: "Color-dark-4")
                                     
                                     Map(coordinateRegion: $region,
                                                     interactionModes: .all,
@@ -168,7 +168,7 @@ struct Detail: View {
                         
                         //.background(CustomShape().fill(Color("Color-List-Outside-1")))
                         .background (
-                            LinearGradient(gradient: .init(colors: [Color("Color-List-Outside-1"),Color("Color-List-Outside-2"),Color("Color-List-Outside-3"),Color("Color-List-Outside-4")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all))
+                            LinearGradient(gradient: .init(colors: [Color("Color-dark-1"),Color("Color-dark-3")]), startPoint: .leading, endPoint: .trailing).edgesIgnoringSafeArea(.all))
                         .clipShape(Corners()
                         )
                     } //: ZSTACK

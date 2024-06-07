@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3503B9A5295F017D00F37B0B /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503B9A4295F017D00F37B0B /* NavigationBarView.swift */; };
+		351826572C123F1A00111D47 /* NewAddFish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351826562C123F1A00111D47 /* NewAddFish.swift */; };
 		355EC3242953578700576A2A /* InsetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC3232953578700576A2A /* InsetDetailsView.swift */; };
 		355EC3262954D5E700576A2A /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC3252954D5E700576A2A /* HeadingView.swift */; };
 		355EC355295C5F7600576A2A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355EC354295C5F7500576A2A /* LocationManager.swift */; };
@@ -36,10 +37,26 @@
 		35D7095429656A0000BDC8CE /* FishAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7095329656A0000BDC8CE /* FishAnnotation.swift */; };
 		35E30AFE2962D3050081526C /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E30AFD2962D3050081526C /* SettingsCell.swift */; };
 		35E30B002962D3AD0081526C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E30AFF2962D3AD0081526C /* SettingsView.swift */; };
+		35F850232B4842A90060EC40 /* BottomNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F850222B4842A90060EC40 /* BottomNavigationBarView.swift */; };
+		35F850252B484CF40060EC40 /* NewContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F850242B484CF40060EC40 /* NewContentView.swift */; };
+		35F850982B4854A90060EC40 /* DataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F850972B4854A90060EC40 /* DataItem.swift */; };
+		35F8509C2B485D650060EC40 /* FishSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F8509B2B485D650060EC40 /* FishSamples.swift */; };
+		35F8509E2B48623E0060EC40 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F8509D2B48623E0060EC40 /* PreviewContainer.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		358A99532BD54B6A00D8E99F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 358EF713289D0A9600B858C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 358EF71A289D0A9600B858C3;
+			remoteInfo = "Fishing-Diary";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3503B9A4295F017D00F37B0B /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		351826562C123F1A00111D47 /* NewAddFish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewAddFish.swift; path = ../../../../../.Trash/NewAddFish.swift; sourceTree = "<group>"; };
 		355EC3232953578700576A2A /* InsetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetDetailsView.swift; sourceTree = "<group>"; };
 		355EC3252954D5E700576A2A /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		355EC354295C5F7500576A2A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -52,6 +69,7 @@
 		357148D2289D2304009B428C /* Fish+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fish+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		357148E2289E6CB7009B428C /* AddFish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFish.swift; sourceTree = "<group>"; };
 		357148E628A110F6009B428C /* FishListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishListItemView.swift; sourceTree = "<group>"; };
+		358A994D2BD54B6A00D8E99F /* Fishing-DiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fishing-DiaryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		358EF71B289D0A9700B858C3 /* Fishing-Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fishing-Diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		358EF71E289D0A9700B858C3 /* Fishing_DiaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fishing_DiaryApp.swift; sourceTree = "<group>"; };
 		358EF720289D0A9700B858C3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,9 +87,21 @@
 		35D7095329656A0000BDC8CE /* FishAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishAnnotation.swift; sourceTree = "<group>"; };
 		35E30AFD2962D3050081526C /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		35E30AFF2962D3AD0081526C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		35F850222B4842A90060EC40 /* BottomNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavigationBarView.swift; sourceTree = "<group>"; };
+		35F850242B484CF40060EC40 /* NewContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContentView.swift; sourceTree = "<group>"; };
+		35F850972B4854A90060EC40 /* DataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItem.swift; sourceTree = "<group>"; };
+		35F8509B2B485D650060EC40 /* FishSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishSamples.swift; sourceTree = "<group>"; };
+		35F8509D2B48623E0060EC40 /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		358A994A2BD54B6A00D8E99F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		358EF718289D0A9600B858C3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -86,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				3503B9A4295F017D00F37B0B /* NavigationBarView.swift */,
+				35F850222B4842A90060EC40 /* BottomNavigationBarView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -113,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				358EF71B289D0A9700B858C3 /* Fishing-Diary.app */,
+				358A994D2BD54B6A00D8E99F /* Fishing-DiaryUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,7 +165,9 @@
 		358EF724289D0A9C00B858C3 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				35F8509B2B485D650060EC40 /* FishSamples.swift */,
 				358EF725289D0A9C00B858C3 /* Preview Assets.xcassets */,
+				35F8509D2B48623E0060EC40 /* PreviewContainer.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -143,6 +177,7 @@
 			children = (
 				358EF720289D0A9700B858C3 /* ContentView.swift */,
 				358EF71E289D0A9700B858C3 /* Fishing_DiaryApp.swift */,
+				35F850242B484CF40060EC40 /* NewContentView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -155,6 +190,7 @@
 				35ED0E0E2962CF5F00BF9F5E /* Map */,
 				3503B9A3295F016700F37B0B /* Navigation */,
 				357148E2289E6CB7009B428C /* AddFish.swift */,
+				351826562C123F1A00111D47 /* NewAddFish.swift */,
 				357148E628A110F6009B428C /* FishListItemView.swift */,
 			);
 			path = View;
@@ -168,6 +204,7 @@
 				358EF727289D0A9C00B858C3 /* Persistence.swift */,
 				358EF73A289D127C00B858C3 /* ImagePicker.swift */,
 				35D7095329656A0000BDC8CE /* FishAnnotation.swift */,
+				35F850972B4854A90060EC40 /* DataItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,6 +246,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		358A994C2BD54B6A00D8E99F /* Fishing-DiaryUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 358A99572BD54B6A00D8E99F /* Build configuration list for PBXNativeTarget "Fishing-DiaryUITests" */;
+			buildPhases = (
+				358A99492BD54B6A00D8E99F /* Sources */,
+				358A994A2BD54B6A00D8E99F /* Frameworks */,
+				358A994B2BD54B6A00D8E99F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				358A99542BD54B6A00D8E99F /* PBXTargetDependency */,
+			);
+			name = "Fishing-DiaryUITests";
+			productName = "Fishing-DiaryUITests";
+			productReference = 358A994D2BD54B6A00D8E99F /* Fishing-DiaryUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		358EF71A289D0A9600B858C3 /* Fishing-Diary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 358EF72E289D0A9C00B858C3 /* Build configuration list for PBXNativeTarget "Fishing-Diary" */;
@@ -233,9 +288,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					358A994C2BD54B6A00D8E99F = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 358EF71A289D0A9600B858C3;
+					};
 					358EF71A289D0A9600B858C3 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -255,11 +314,19 @@
 			projectRoot = "";
 			targets = (
 				358EF71A289D0A9600B858C3 /* Fishing-Diary */,
+				358A994C2BD54B6A00D8E99F /* Fishing-DiaryUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		358A994B2BD54B6A00D8E99F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		358EF719289D0A9600B858C3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -272,10 +339,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		358A99492BD54B6A00D8E99F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		358EF717289D0A9600B858C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F8509E2B48623E0060EC40 /* PreviewContainer.swift in Sources */,
 				35D7094C2964951100BDC8CE /* MapMainViewTemp.swift in Sources */,
 				35E30AFE2962D3050081526C /* SettingsCell.swift in Sources */,
 				357148E728A110F6009B428C /* FishListItemView.swift in Sources */,
@@ -286,9 +361,12 @@
 				358EF73B289D127C00B858C3 /* ImagePicker.swift in Sources */,
 				35D7095429656A0000BDC8CE /* FishAnnotation.swift in Sources */,
 				357148E3289E6CB8009B428C /* AddFish.swift in Sources */,
+				35F850982B4854A90060EC40 /* DataItem.swift in Sources */,
+				35F8509C2B485D650060EC40 /* FishSamples.swift in Sources */,
 				358EF72B289D0A9C00B858C3 /* Fishing_Diary.xcdatamodeld in Sources */,
 				35E30B002962D3AD0081526C /* SettingsView.swift in Sources */,
 				35D709402964774C00BDC8CE /* LocationPreviewView.swift in Sources */,
+				35F850252B484CF40060EC40 /* NewContentView.swift in Sources */,
 				357148C5289D1A54009B428C /* FishDetailView.swift in Sources */,
 				358EF71F289D0A9700B858C3 /* Fishing_DiaryApp.swift in Sources */,
 				35D709522965636800BDC8CE /* FishAnnotationView.swift in Sources */,
@@ -297,18 +375,75 @@
 				355EC359295D9C2700576A2A /* MapMainView.swift in Sources */,
 				355EC3262954D5E700576A2A /* HeadingView.swift in Sources */,
 				35B0BF5228B131B600472E7E /* InsetImageView.swift in Sources */,
+				35F850232B4842A90060EC40 /* BottomNavigationBarView.swift in Sources */,
 				35D7094A2964880900BDC8CE /* MapPins.swift in Sources */,
 				357148D4289D2304009B428C /* Fish+CoreDataProperties.swift in Sources */,
 				3503B9A5295F017D00F37B0B /* NavigationBarView.swift in Sources */,
 				355EC357295D9AA000576A2A /* MapView.swift in Sources */,
 				357148CC289D208A009B428C /* Constant.swift in Sources */,
+				351826572C123F1A00111D47 /* NewAddFish.swift in Sources */,
 				357148D3289D2304009B428C /* Fish+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		358A99542BD54B6A00D8E99F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 358EF71A289D0A9600B858C3 /* Fishing-Diary */;
+			targetProxy = 358A99532BD54B6A00D8E99F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		358A99552BD54B6A00D8E99F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GATBYX743P;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nordicprograms.Fishing-DiaryUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Fishing-Diary";
+			};
+			name = Debug;
+		};
+		358A99562BD54B6A00D8E99F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GATBYX743P;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nordicprograms.Fishing-DiaryUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Fishing-Diary";
+			};
+			name = Release;
+		};
 		358EF72C289D0A9C00B858C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -359,7 +494,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -413,7 +548,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -447,11 +582,13 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nordicprograms.Fishing-Diary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -484,11 +621,13 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nordicprograms.Fishing-Diary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -500,6 +639,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		358A99572BD54B6A00D8E99F /* Build configuration list for PBXNativeTarget "Fishing-DiaryUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				358A99552BD54B6A00D8E99F /* Debug */,
+				358A99562BD54B6A00D8E99F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		358EF716289D0A9600B858C3 /* Build configuration list for PBXProject "Fishing-Diary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

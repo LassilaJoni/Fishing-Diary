@@ -23,20 +23,20 @@ struct InsetDetailsView: View {
                 .foregroundColor(Color.white)
                 .padding()
             Text(fish.weight ?? "Error getting fish weight")
-                       .foregroundColor(.white)
+                       .foregroundColor(Color("Color-dark-4"))
                        .padding()
                        .multilineTextAlignment(.leading)
                        .fixedSize(horizontal: false, vertical: true)
                    Spacer()
                    Image(systemName: "scalemass.fill")
-                       .foregroundColor(Color("Color-1"))
+                       .foregroundColor(Color("Color-dark-2"))
                        .padding()
                        .background(Color.white)
                        .cornerRadius(20)
                        .padding([.trailing], 5)
                } //: VSTACK
                .frame(maxWidth: .infinity, maxHeight: 60)
-               .background(Color("Color-1"))
+               .background(Color("Color-dark-2"))
                .cornerRadius(10)
         
         } //: VSTACK

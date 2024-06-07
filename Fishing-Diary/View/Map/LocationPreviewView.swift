@@ -97,7 +97,7 @@ extension LocationPreviewView {
                     .font(.headline)
                     .frame(width: 125, height: 45)
             }
-            .background(Color.blue)
+            .background(Color("Color-dark-2"))
             .cornerRadius(10)
         }
     }

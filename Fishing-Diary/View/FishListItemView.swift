@@ -17,31 +17,39 @@ struct FishListItemView: View {
            
            
             HStack {
+                
                 VStack {
+                    
                 Image(uiImage: (UIImage(data: fish.imageData ?? self.image) ?? UIImage(named: "noimagefound"))!)
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: 100)
                     .cornerRadius(10)
+                    
                 } //: VSTACK
+                
                 VStack {
+                        
                         Text(fish.title ?? "Something went wrong fetching the title")
                             .font(.title)
-                            .foregroundColor(Color.white)
+                            .foregroundColor(.primary)
                             .lineLimit(3)
                        
                         Text(fish.timestamp ?? Date() , formatter: itemFormatter)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(.primary)
                 } //: VSTACK
                     //Centers the text
-            
+            Spacer()
                 
             } //: HSTACK
             .padding(.vertical)
             .padding(.horizontal, 10)
             .padding(.bottom, 5)
             .padding(.top, 5)
-               
+            .scaledToFill()
+            .frame(maxWidth: 350)
+            
+            .clipShape(RoundedRectangle(cornerRadius: 20))
 
     }
 }

@@ -11,17 +11,17 @@ struct HeadingView: View {
     
     var headingImage: String
     var headingText: String
-    var headingTextColor: String
+    var headingTextColor: String?
         
         var body: some View {
             HStack {
                 Image(systemName: headingImage)
-                    .foregroundColor(Color("Color-1"))
+                    .foregroundColor(Color("Color-dark-2"))
                     .imageScale(.large)
                 Text(headingText)
                     .font(.title2)
                     .fontWeight(.heavy)
-                    .foregroundColor(Color("\(headingTextColor)"))
+                    .foregroundColor(headingTextColor != nil ? Color(headingTextColor!) : Color("Color-dark-1"))
             }
             .padding(.vertical)
         }
